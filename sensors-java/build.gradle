@@ -30,6 +30,9 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 task wrapper(type: Wrapper) {
   gradleVersion = '3.2.1'
 }
