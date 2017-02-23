@@ -1,0 +1,47 @@
+group 'es.mdelapenya.uned.master.is.ubicomp.sensors.api'
+version '1.0-SNAPSHOT'
+
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
+  }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+jar {
+  baseName = 'sensors-api'
+  version =  '1.0-SNAPSHOT'
+}
+
+task run(dependsOn: ':bootRun') << {
+  println 'Boot'
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven { url "http://repo.spring.io/release" }
+}
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-web")
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+  testCompile("junit:junit")
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '3.2.1'
+}

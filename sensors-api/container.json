@@ -1,0 +1,12 @@
+{
+    "id": "api",
+    "type": "wedeploy/java:latest",
+    "hooks": {
+        "before_build": "",
+        "build": "gradle -Dorg.gradle.native=false clean build -x test",
+        "after_build": "",
+        "before_start": "",
+        "start": "",
+        "after_start": ""
+    }
+}
