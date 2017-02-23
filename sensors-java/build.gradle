@@ -1,4 +1,4 @@
-group 'io.wedeploy.example'
+group 'es.mdelapenya.uned.master.is.ubicomp.sensors.server'
 version '1.0-SNAPSHOT'
 
 buildscript {

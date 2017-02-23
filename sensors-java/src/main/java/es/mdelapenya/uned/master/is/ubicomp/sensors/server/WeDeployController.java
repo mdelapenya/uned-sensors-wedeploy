@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.wedeploy.example;
+package es.mdelapenya.uned.master.is.ubicomp.sensors.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
