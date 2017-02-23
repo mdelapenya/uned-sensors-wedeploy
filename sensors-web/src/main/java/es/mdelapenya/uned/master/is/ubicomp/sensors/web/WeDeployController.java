@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package es.mdelapenya.uned.master.is.ubicomp.sensors.server;
+package es.mdelapenya.uned.master.is.ubicomp.sensors.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
