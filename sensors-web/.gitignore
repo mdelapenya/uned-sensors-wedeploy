@@ -14,6 +14,8 @@ ui/src/main/webapp/docs/compiled
 .project
 .settings
 *.iml
+*.ipr
+*.iws
 gradle.properties
 out
 
