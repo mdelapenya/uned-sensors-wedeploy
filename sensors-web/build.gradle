@@ -1,4 +1,4 @@
-group 'es.mdelapenya.uned.master.is.ubicomp.sensors.server'
+group 'es.mdelapenya.uned.master.is.ubicomp.sensors.web'
 version '1.0-SNAPSHOT'
 
 buildscript {
