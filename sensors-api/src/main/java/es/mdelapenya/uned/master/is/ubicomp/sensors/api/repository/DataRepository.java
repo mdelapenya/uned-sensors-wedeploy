@@ -16,63 +16,45 @@
 
 package es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository;
 
-import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.Sensor;
-import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
+import com.wedeploy.api.ApiClient;
+import com.wedeploy.api.WeDeploy;
+import com.wedeploy.api.sdk.Response;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
 
 /**
  * @author Manuel de la Peña
  */
 public class DataRepository {
 
-	public Sensor findBySensorId(String sensorId) {
-		List<SpeedData> data = new ArrayList<>();
-
-		for (int j = 0; j < 10; j++) {
-			data.add(mockData(sensorId));
-		}
-
-		return new Sensor(sensorId, data);
+	public static DataRepository getInstance() {
+		return instance;
 	}
 
-	public Collection<Sensor> findAllSensors() {
-		List<Sensor> sensors = new ArrayList<>();
+	public Response findBySensorId(String sensorId) {
+		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors/" + sensorId);
 
-		for (int i = 0; i < 10; i++) {
-			String sensorId = "" + i;
-
-			List<SpeedData> data = new ArrayList<>();
-
-			for (int j = 0; j < 10; j++) {
-				data.add(mockData(sensorId));
-			}
-
-			sensors.add(new Sensor(sensorId, data));
-		}
-
-		return sensors;
+		return weDeploy.get();
 	}
 
-	public SpeedData save(SpeedData speedData) {
-		SpeedData savedSpeedData = new SpeedData(
-			speedData.getSensorId(), speedData.getLatitude(),
-			speedData.getLongitude(), speedData.getSpeed(),
-			speedData.getTimestamp());
+	public Response findAllSensors() {
+		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors");
 
-		return savedSpeedData;
+		return weDeploy.get();
 	}
 
-	private SpeedData mockData(String sensorId) {
-		double latitude = Math.random();
-		double longitude = Math.random();
-		double speed = Math.random();
+	public Response save(SpeedData speedData) {
+		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors/track");
 
-		return new SpeedData(
-			sensorId, latitude, longitude, speed, new Date().getTime());
+		return weDeploy.post(speedData);
 	}
+
+	private DataRepository() {
+		ApiClient.init();
+	}
+
+	private static final String BASE_PATH = "/data";
+
+	private static DataRepository instance = new DataRepository();
 
 }

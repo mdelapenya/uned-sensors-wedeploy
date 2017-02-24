@@ -16,7 +16,8 @@
 
 package es.mdelapenya.uned.master.is.ubicomp.sensors.api;
 
-import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.Sensor;
+import com.wedeploy.api.sdk.Response;
+
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepository;
 
@@ -30,8 +31,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-import java.util.Collection;
-
 /**
  * @author Manuel de la Peña
  */
@@ -39,15 +38,15 @@ import java.util.Collection;
 @RequestMapping("/sensors")
 public class SensorsRestController {
 
-	private final DataRepository dataRepository = new DataRepository();
+	private final DataRepository dataRepository = DataRepository.getInstance();
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
-	public Sensor getSensor(@PathVariable String sensorId) {
+	public Response getSensor(@PathVariable String sensorId) {
 		return dataRepository.findBySensorId(sensorId);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Sensor> getSensors() {
+	public Response getSensors() {
 		return this.dataRepository.findAllSensors();
 	}
 
