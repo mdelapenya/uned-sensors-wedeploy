@@ -1,0 +1,32 @@
+body {
+	background: #0e141a;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+h1 {
+	font-size: 72px;
+	font-weight: 700;
+	color: #00d46a;
+	margin: 0;
+}
+
+h2 {
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 0;
+}
+
+.logo {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
