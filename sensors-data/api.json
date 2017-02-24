@@ -1,8 +1,18 @@
 [
 	{
 		"description": "Returns all sensors that sent metrics to the platform",
+		"path": "/sensors/*",
+		"method": "GET"
+	},
+	{
+		"description": "Returns one sensor identified by its unique sensorId",
+		"path": "/sensors/:sensorId",
+		"method": "GET"
+	},
+	{
+		"description": "Stores one sensor's metrics",
 		"path": "/sensors",
-		"method": "GET",
+		"method": "POST",
 		"data": true
 	}
 ]
