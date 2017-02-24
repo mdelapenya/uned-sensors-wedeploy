@@ -13,6 +13,23 @@
 		"description": "Stores one sensor's metrics",
 		"path": "/sensors",
 		"method": "POST",
-		"data": true
+		"data": true,
+		"parameters": {
+			"sensorId": {
+				"type": "string"
+			},
+			"latitude": {
+				"type": "string"
+			},
+			"longitude": {
+				"type": "string"
+			},
+			"speed": {
+				"type": "string"
+			},
+			"timestamp": {
+				"type": "string"
+			}
+		}
 	}
 ]
