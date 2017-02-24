@@ -23,6 +23,9 @@ import java.io.Serializable;
  */
 public class SpeedData implements Serializable {
 
+	public SpeedData() {
+	}
+
 	public SpeedData(
 		String sensorId, double latitude, double longitude, double speed,
 		long timestamp) {
