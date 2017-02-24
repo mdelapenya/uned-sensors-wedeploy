@@ -36,12 +36,12 @@ import java.util.Collection;
  * @author Manuel de la Peña
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/sensors")
 public class SensorsRestController {
 
 	private final DataRepository dataRepository = new DataRepository();
 
-	@RequestMapping(method = RequestMethod.GET, value = "{sensorId}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
 	public Sensor getSensor(@PathVariable String sensorId) {
 		return dataRepository.findBySensorId(sensorId);
 	}
@@ -51,7 +51,7 @@ public class SensorsRestController {
 		return this.dataRepository.findAllSensors();
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "track")
+	@RequestMapping(method = RequestMethod.POST, value = "/track")
 	public ResponseEntity<?> track(@RequestBody SpeedData inputData) {
 		dataRepository.save(
 			new SpeedData(
