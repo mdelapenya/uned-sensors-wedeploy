@@ -17,12 +17,18 @@
 package es.mdelapenya.uned.master.is.ubicomp.sensors.api;
 
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.Sensor;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 import java.util.Collection;
 
@@ -43,6 +49,20 @@ public class SensorsRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Sensor> getSensors() {
 		return this.dataRepository.findAllSensors();
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/track")
+	public ResponseEntity<?> track(@RequestBody SpeedData inputData) {
+		dataRepository.save(
+			new SpeedData(
+				inputData.getSensorId(), inputData.getLatitude(),
+				inputData.getLongitude(), inputData.getSpeed(),
+				inputData.getTimestamp()));
+
+		URI location = ServletUriComponentsBuilder
+			.fromCurrentRequest().build().toUri();
+
+		return ResponseEntity.created(location).build();
 	}
 
 }
