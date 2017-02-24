@@ -50,7 +50,7 @@ public class SensorsRestController {
 		return this.dataRepository.findAllSensors();
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/track")
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> track(@RequestBody SpeedData inputData) {
 		dataRepository.save(
 			new SpeedData(
