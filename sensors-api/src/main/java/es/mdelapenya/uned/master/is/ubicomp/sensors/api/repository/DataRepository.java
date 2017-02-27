@@ -50,7 +50,7 @@ public class DataRepository {
 		String body = speedData.toString();
 
 		return weDeploy
-			.header("Content-Type", "application/json")
+			.header("Content-Type", "application/json; charset=UTF-8")
 			.header("Content-Length", Long.toString(body.length()))
 			.post(body);
 	}
