@@ -32,19 +32,20 @@ public class DataRepository {
 	}
 
 	public Response findBySensorId(String sensorId) {
-		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors/" + sensorId);
+		WeDeploy weDeploy = new WeDeploy(
+			BASE_SENSORS_DATA_PATH + "/" + sensorId);
 
 		return weDeploy.get();
 	}
 
 	public Response findAllSensors() {
-		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors");
+		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
 		return weDeploy.get();
 	}
 
 	public Response save(SpeedData speedData) {
-		WeDeploy weDeploy = new WeDeploy(BASE_PATH + "/sensors/track");
+		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
 		return weDeploy.post(speedData);
 	}
@@ -53,7 +54,7 @@ public class DataRepository {
 		ApiClient.init();
 	}
 
-	private static final String BASE_PATH = "/data";
+	private static final String BASE_SENSORS_DATA_PATH = "data/sensors";
 
 	private static DataRepository instance = new DataRepository();
 
