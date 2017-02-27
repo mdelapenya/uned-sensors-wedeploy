@@ -59,7 +59,10 @@ public class SensorsRestController {
 				inputData.getTimestamp()));
 
 		URI location = ServletUriComponentsBuilder
-			.fromCurrentRequest().build().toUri();
+			.fromCurrentContextPath()
+			.path("/sensors/" + inputData.getSensorId())
+			.build()
+			.toUri();
 
 		return ResponseEntity.created(location).build();
 	}
