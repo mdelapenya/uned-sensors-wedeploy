@@ -47,7 +47,9 @@ public class DataRepository {
 	public Response save(SpeedData speedData) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
-		return weDeploy.post(speedData);
+		return weDeploy
+			.header("Content-Type", "application/json")
+			.post(speedData);
 	}
 
 	private DataRepository() {
