@@ -47,9 +47,12 @@ public class DataRepository {
 	public Response save(SpeedData speedData) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
+		String body = speedData.toString();
+
 		return weDeploy
 			.header("Content-Type", "application/json")
-			.post(speedData);
+			.header("Content-Length", Long.toString(body.length()))
+			.post(body);
 	}
 
 	private DataRepository() {

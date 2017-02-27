@@ -60,27 +60,64 @@ public class SpeedData implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder(16);
+		StringBuilder sb = new StringBuilder(41);
 
-		sb.append("[");
-		sb.append("latitute: ");
+		sb.append("{");
+
+		sb.append(ESCAPED_QUOTE);
+		sb.append("latitute");
+		sb.append(ESCAPED_QUOTE);
+		sb.append(":");
+		sb.append(ESCAPED_QUOTE);
 		sb.append(getLatitude());
+		sb.append(ESCAPED_QUOTE);
+
 		sb.append(", ");
-		sb.append("longitude: ");
+
+		sb.append(ESCAPED_QUOTE);
+		sb.append("longitude");
+		sb.append(ESCAPED_QUOTE);
+		sb.append(":");
+		sb.append(ESCAPED_QUOTE);
 		sb.append(getLongitude());
+		sb.append(ESCAPED_QUOTE);
+
 		sb.append(", ");
-		sb.append("sensorId: ");
+
+		sb.append(ESCAPED_QUOTE);
+		sb.append("sensorId");
+		sb.append(ESCAPED_QUOTE);
+		sb.append(":");
+		sb.append(ESCAPED_QUOTE);
 		sb.append(getSensorId());
+		sb.append(ESCAPED_QUOTE);
+
 		sb.append(", ");
-		sb.append("speed: ");
+
+		sb.append(ESCAPED_QUOTE);
+		sb.append("speed");
+		sb.append(ESCAPED_QUOTE);
+		sb.append(":");
+		sb.append(ESCAPED_QUOTE);
 		sb.append(getSpeed());
+		sb.append(ESCAPED_QUOTE);
+
 		sb.append(", ");
-		sb.append("timestamp: ");
+
+		sb.append(ESCAPED_QUOTE);
+		sb.append("timestamp");
+		sb.append(ESCAPED_QUOTE);
+		sb.append(":");
+		sb.append(ESCAPED_QUOTE);
 		sb.append(getTimestamp());
-		sb.append("]");
+		sb.append(ESCAPED_QUOTE);
+
+		sb.append("}");
 
 		return sb.toString();
 	}
+
+	private static final String ESCAPED_QUOTE = "\"";
 
 	private double latitude;
 	private double longitude;
