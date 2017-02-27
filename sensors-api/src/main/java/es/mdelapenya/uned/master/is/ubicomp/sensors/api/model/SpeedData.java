@@ -35,7 +35,7 @@ public class SpeedData implements Serializable {
 		this.longitude = longitude;
 		this.speed = speed;
 		this.timestamp = timestamp;
-		
+
 	}
 
 	public double getLatitude() {
@@ -56,6 +56,30 @@ public class SpeedData implements Serializable {
 
 	public long getTimestamp() {
 		return timestamp;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(16);
+
+		sb.append("[");
+		sb.append("latitute: ");
+		sb.append(getLatitude());
+		sb.append(", ");
+		sb.append("longitude: ");
+		sb.append(getLongitude());
+		sb.append(", ");
+		sb.append("sensorId: ");
+		sb.append(getSensorId());
+		sb.append(", ");
+		sb.append("speed: ");
+		sb.append(getSpeed());
+		sb.append(", ");
+		sb.append("timestamp: ");
+		sb.append(getTimestamp());
+		sb.append("]");
+
+		return sb.toString();
 	}
 
 	private double latitude;
