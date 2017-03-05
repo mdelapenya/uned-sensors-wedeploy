@@ -19,8 +19,12 @@ package es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository;
 import com.wedeploy.api.ApiClient;
 import com.wedeploy.api.WeDeploy;
 import com.wedeploy.api.sdk.Response;
+import com.wedeploy.api.serializer.impl.JoddJsonParser;
 
+import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SensorRow;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
+
+import java.util.Collection;
 
 /**
  * @author Manuel de la Peña
@@ -31,20 +35,24 @@ public class DataRepository {
 		return instance;
 	}
 
-	public String findBySensorId(String sensorId) {
+	public Collection<SensorRow> findBySensorId(String sensorId) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
 		Response response = weDeploy.filter("sensorId", sensorId).get();
 
-		return response.body();
+		JoddJsonParser parser = new JoddJsonParser();
+
+		return parser.parseAsList(response.body(), SensorRow.class);
 	}
 
-	public String findAllSensors() {
+	public Collection<SensorRow> findAllSensors() {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
 		Response response = weDeploy.get();
 
-		return response.body();
+		JoddJsonParser parser = new JoddJsonParser();
+
+		return parser.parseAsList(response.body(), SensorRow.class);
 	}
 
 	public Response save(SpeedData speedData) {
