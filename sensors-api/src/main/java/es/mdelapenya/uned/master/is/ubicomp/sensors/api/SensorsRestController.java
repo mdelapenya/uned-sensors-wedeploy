@@ -40,6 +40,11 @@ public class SensorsRestController {
 
 	private final DataRepository dataRepository = DataRepository.getInstance();
 
+	@RequestMapping(method = RequestMethod.DELETE)
+	public Collection<SensorRow> delete() {
+		return dataRepository.wipeOut();
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
 	public Collection<SensorRow> getSensor(@PathVariable String sensorId) {
 		Collection<SensorRow> rows = dataRepository.findBySensorId(sensorId);

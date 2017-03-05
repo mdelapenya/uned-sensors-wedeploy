@@ -25,6 +25,7 @@ import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.Metric;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * @author Manuel de la Peña
@@ -33,6 +34,15 @@ public class DataRepository {
 
 	public static DataRepository getInstance() {
 		return instance;
+	}
+
+	public Collection<SensorRow> wipeOut() {
+		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
+
+		weDeploy.header("Content-Type", "application/json; charset=UTF-8")
+			.delete();
+
+		return Collections.EMPTY_LIST;
 	}
 
 	public Collection<SensorRow> findBySensorId(String sensorId) {

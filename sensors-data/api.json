@@ -1,5 +1,11 @@
 [
 	{
+		"description": "Remove all sensors that sent metrics to the platform",
+		"path": "/sensors",
+		"method": "DELETE",
+		"data": true
+	},
+	{
 		"description": "Returns all sensors that sent metrics to the platform",
 		"path": "/sensors/*",
 		"method": "GET",
