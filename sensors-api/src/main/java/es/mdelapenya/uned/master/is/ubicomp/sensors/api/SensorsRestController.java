@@ -41,12 +41,12 @@ public class SensorsRestController {
 	private final DataRepository dataRepository = DataRepository.getInstance();
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
-	public Response getSensor(@PathVariable String sensorId) {
+	public String getSensor(@PathVariable String sensorId) {
 		return dataRepository.findBySensorId(sensorId);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Response getSensors() {
+	public String getSensors() {
 		return this.dataRepository.findAllSensors();
 	}
 

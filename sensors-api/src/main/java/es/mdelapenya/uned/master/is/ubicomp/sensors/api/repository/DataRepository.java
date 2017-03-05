@@ -31,16 +31,20 @@ public class DataRepository {
 		return instance;
 	}
 
-	public Response findBySensorId(String sensorId) {
+	public String findBySensorId(String sensorId) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
-		return weDeploy.filter("sensorId", sensorId).get();
+		Response response = weDeploy.filter("sensorId", sensorId).get();
+
+		return response.body();
 	}
 
-	public Response findAllSensors() {
+	public String findAllSensors() {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
-		return weDeploy.get();
+		Response response = weDeploy.get();
+
+		return response.body();
 	}
 
 	public Response save(SpeedData speedData) {
