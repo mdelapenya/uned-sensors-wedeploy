@@ -32,10 +32,9 @@ public class DataRepository {
 	}
 
 	public Response findBySensorId(String sensorId) {
-		WeDeploy weDeploy = new WeDeploy(
-			BASE_SENSORS_DATA_PATH + "/" + sensorId);
+		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
-		return weDeploy.get();
+		return weDeploy.filter("sensorId", sensorId).get();
 	}
 
 	public Response findAllSensors() {
