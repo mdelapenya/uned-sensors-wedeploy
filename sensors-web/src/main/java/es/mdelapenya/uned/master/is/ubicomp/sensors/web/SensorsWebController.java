@@ -27,14 +27,14 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @EnableAutoConfiguration
-public class WeDeployController {
+public class SensorsWebController {
 
-    public WeDeployController() {
+    public SensorsWebController() {
 
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(WeDeployController.class, args);
+        SpringApplication.run(SensorsWebController.class, args);
     }
 
     @RequestMapping("/")
