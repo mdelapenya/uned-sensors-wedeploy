@@ -65,7 +65,7 @@ public class SpeedData implements Serializable {
 		sb.append("{");
 
 		sb.append(ESCAPED_QUOTE);
-		sb.append("latitute");
+		sb.append("latitude");
 		sb.append(ESCAPED_QUOTE);
 		sb.append(":");
 		sb.append(ESCAPED_QUOTE);
