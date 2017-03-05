@@ -21,6 +21,9 @@ package es.mdelapenya.uned.master.is.ubicomp.sensors.api.model;
  */
 public class SensorRow extends SpeedData {
 
+	public SensorRow() {
+	}
+
 	public SensorRow(
 		String id, String sensorId, double latitude, double longitude,
 		double speed, long timestamp) {
