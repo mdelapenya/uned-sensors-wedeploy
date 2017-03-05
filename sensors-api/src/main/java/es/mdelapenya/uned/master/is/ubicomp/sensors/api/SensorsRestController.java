@@ -16,6 +16,7 @@
 
 package es.mdelapenya.uned.master.is.ubicomp.sensors.api;
 
+import es.mdelapenya.uned.master.is.ubicomp.sensors.api.exception.NoSuchSensorException;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SensorRow;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepository;
@@ -42,7 +43,13 @@ public class SensorsRestController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
 	public Collection<SensorRow> getSensor(@PathVariable String sensorId) {
-		return dataRepository.findBySensorId(sensorId);
+		Collection<SensorRow> rows = dataRepository.findBySensorId(sensorId);
+
+		if (!rows.isEmpty()) {
+			return rows;
+		}
+
+		throw new NoSuchSensorException(sensorId);
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
