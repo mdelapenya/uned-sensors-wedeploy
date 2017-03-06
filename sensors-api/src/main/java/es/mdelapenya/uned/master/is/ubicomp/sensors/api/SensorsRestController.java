@@ -19,7 +19,7 @@ package es.mdelapenya.uned.master.is.ubicomp.sensors.api;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.exception.NoSuchSensorException;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepository;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
-import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SpeedData;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorMetric;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,9 +58,9 @@ public class SensorsRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> track(@RequestBody SpeedData inputData) {
+	public ResponseEntity<?> track(@RequestBody SensorMetric inputData) {
 		dataRepository.save(
-			new SpeedData(
+			new SensorMetric(
 				inputData.getSensorId(), inputData.getLatitude(),
 				inputData.getLongitude(), inputData.getSpeed(),
 				inputData.getTimestamp()));

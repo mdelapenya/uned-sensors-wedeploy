@@ -21,8 +21,8 @@ import com.wedeploy.api.WeDeploy;
 import com.wedeploy.api.sdk.Response;
 import com.wedeploy.api.serializer.impl.JoddJsonParser;
 
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorMetric;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
-import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SpeedData;
 
 import java.util.Collection;
 
@@ -55,10 +55,10 @@ public class DataRepository {
 		return parser.parseAsList(response.body(), SensorRow.class);
 	}
 
-	public Response save(SpeedData speedData) {
+	public Response save(SensorMetric sensorMetric) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
-		String body = speedData.toString();
+		String body = sensorMetric.toString();
 
 		return weDeploy
 			.header("Content-Type", "application/json; charset=UTF-8")
