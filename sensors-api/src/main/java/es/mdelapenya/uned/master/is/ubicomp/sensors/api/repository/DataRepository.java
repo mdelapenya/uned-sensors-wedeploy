@@ -21,8 +21,8 @@ import com.wedeploy.api.WeDeploy;
 import com.wedeploy.api.sdk.Response;
 import com.wedeploy.api.serializer.impl.JoddJsonParser;
 
-import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SensorRow;
-import es.mdelapenya.uned.master.is.ubicomp.sensors.api.model.SpeedData;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SpeedData;
 
 import java.util.Collection;
 
