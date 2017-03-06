@@ -61,10 +61,10 @@ public class SensorsRestController {
 	public ResponseEntity<?> track(@RequestBody SensorMetric sensorMetric) {
 		dataRepository.save(
 			new SensorMetric(
-				sensorMetric.getSensorId(), sensorMetric.getLatitude(),
-				sensorMetric.getLongitude(), sensorMetric.getMetric(),
-				sensorMetric.getMetricName(), sensorMetric.getMetricUnits(),
-				sensorMetric.getTimestamp()));
+				sensorMetric.getSensorId(), sensorMetric.getApplicationId(),
+				sensorMetric.getLatitude(), sensorMetric.getLongitude(),
+				sensorMetric.getMetric(), sensorMetric.getMetricName(),
+				sensorMetric.getMetricUnits(), sensorMetric.getTimestamp()));
 
 		URI location = ServletUriComponentsBuilder
 			.fromCurrentContextPath()
