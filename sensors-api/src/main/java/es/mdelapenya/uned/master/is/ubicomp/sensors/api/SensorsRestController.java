@@ -58,16 +58,17 @@ public class SensorsRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> track(@RequestBody SensorMetric inputData) {
+	public ResponseEntity<?> track(@RequestBody SensorMetric sensorMetric) {
 		dataRepository.save(
 			new SensorMetric(
-				inputData.getSensorId(), inputData.getLatitude(),
-				inputData.getLongitude(), inputData.getSpeed(),
-				inputData.getTimestamp()));
+				sensorMetric.getSensorId(), sensorMetric.getLatitude(),
+				sensorMetric.getLongitude(), sensorMetric.getMetric(),
+				sensorMetric.getMetricName(), sensorMetric.getMetricUnits(),
+				sensorMetric.getTimestamp()));
 
 		URI location = ServletUriComponentsBuilder
 			.fromCurrentContextPath()
-			.path("/sensors/" + inputData.getSensorId())
+			.path("/sensors/" + sensorMetric.getSensorId())
 			.build()
 			.toUri();
 
