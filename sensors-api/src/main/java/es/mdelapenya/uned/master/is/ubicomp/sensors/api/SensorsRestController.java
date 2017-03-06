@@ -18,8 +18,8 @@ package es.mdelapenya.uned.master.is.ubicomp.sensors.api;
 
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.exception.NoSuchSensorException;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepository;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.Metric;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
-import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorMetric;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,12 +58,12 @@ public class SensorsRestController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> track(@RequestBody SensorMetric sensorMetric) {
-		dataRepository.save(sensorMetric);
+	public ResponseEntity<?> track(@RequestBody Metric metric) {
+		dataRepository.save(metric);
 
 		URI location = ServletUriComponentsBuilder
 			.fromCurrentContextPath()
-			.path("/sensors/" + sensorMetric.getSensorId())
+			.path("/sensors/" + metric.getSensorId())
 			.build()
 			.toUri();
 

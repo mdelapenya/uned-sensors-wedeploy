@@ -21,7 +21,7 @@ import com.wedeploy.api.WeDeploy;
 import com.wedeploy.api.sdk.Response;
 import com.wedeploy.api.serializer.impl.JoddJsonParser;
 
-import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorMetric;
+import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.Metric;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
 
 import java.util.Collection;
@@ -55,7 +55,7 @@ public class DataRepository {
 		return parser.parseAsList(response.body(), SensorRow.class);
 	}
 
-	public Response save(SensorMetric sensorMetric) {
+	public Response save(Metric sensorMetric) {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 
 		String body = sensorMetric.toString();
