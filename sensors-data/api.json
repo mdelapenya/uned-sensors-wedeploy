@@ -26,7 +26,13 @@
 			"longitude": {
 				"type": "string"
 			},
-			"speed": {
+			"metric": {
+				"type": "string"
+			},
+			"metricName": {
+				"type": "string"
+			},
+			"metricUnits": {
 				"type": "string"
 			},
 			"timestamp": {
