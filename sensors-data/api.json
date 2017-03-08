@@ -17,6 +17,9 @@
 		"method": "POST",
 		"data": true,
 		"parameters": {
+			"applicationId": {
+				"type": "string"
+			},
 			"sensorId": {
 				"type": "string"
 			},
