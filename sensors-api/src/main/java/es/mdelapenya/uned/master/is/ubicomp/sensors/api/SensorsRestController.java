@@ -21,15 +21,14 @@ import es.mdelapenya.uned.master.is.ubicomp.sensors.api.repository.DataRepositor
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.Metric;
 import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Collection;
 
 /**
@@ -61,13 +60,7 @@ public class SensorsRestController {
 	public ResponseEntity<?> track(@RequestBody Metric metric) {
 		dataRepository.save(metric);
 
-		URI location = ServletUriComponentsBuilder
-			.fromCurrentContextPath()
-			.path("/sensors/" + metric.getSensorId())
-			.build()
-			.toUri();
-
-		return ResponseEntity.created(location).build();
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 }
