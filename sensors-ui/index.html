@@ -40,6 +40,10 @@
 			for(var i = 0; i < sensors.length; i++) {
 				html += `<li class="listitem list-group-item clearfix ${sensors[i].applicationId}" data-sensor-id="${sensors[i].sensorId}">
 						<span class="sensorId">${sensors[i].sensorId}</span>
+						&nbsp;-&nbsp;
+						<span class="metric">${sensors[i].metric}</span>
+						&nbsp;-&nbsp;
+						<span class="metricUnits">${sensors[i].metricUnits}</span>
 				</li>`;
 			}
 
