@@ -21,6 +21,7 @@ function plotSensors(sensors) {
 				<tr>
 					<th>application-id<span class="datatable-type">string</span></th>
 					<th>sensor-id<span class="datatable-type">string</span></th>
+					<th>coordinates<span class="datatable-type">string</span></th>
 					<th>metric<span class="datatable-type">string</span></th>
 					<th>units<span class="datatable-type">string</span></th>
 					<th>timestamp<span class="datatable-type">date</span></th>
@@ -33,6 +34,7 @@ function plotSensors(sensors) {
 		html += `<tr data-sensor-id="${sensors[i].sensorId}">
 	<td><span class="datatable-string ${sensors[i].applicationId}">${sensors[i].applicationId}</span></td>
 	<td><span class="datatable-string sensorId">${sensors[i].sensorId}</span></td>
+	<td><span class="datatable-string coordinates">${sensors[i].latitude}, ${sensors[i].longitude}</span></td>
 	<td><span class="datatable-string metric">${sensors[i].metric}</span></td>
 	<td><span class="datatable-string metricUnits">${sensors[i].metricUnits}</span></td>
 	<td><span class="datatable-string timestamp">${timeConverter(sensors[i].timestamp)}</span></td>
