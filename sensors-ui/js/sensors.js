@@ -1,4 +1,4 @@
-function getSensors(type) {
+function getSensors(mode) {
 	return WeDeploy.data('data.mdelapenya-sensors.wedeploy.io')
 		.get('sensors')
 		.then(function(sensors) {
