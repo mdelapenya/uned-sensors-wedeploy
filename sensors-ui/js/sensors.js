@@ -64,15 +64,7 @@ function plotSensors(sensors) {
 }
 
 function timeConverter(timestamp){
-	var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-	var currentDate = new Date(timestamp * 1000);
+	var currentDate = new Date(parseInt(timestamp));
 
-	var year = currentDate.getFullYear();
-	var month = months[currentDate.getMonth()];
-	var date = currentDate.getDate();
-	var hour = currentDate.getHours();
-	var min = currentDate.getMinutes();
-	var sec = currentDate.getSeconds();
-
-	return date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+	return currentDate.toLocaleString();
 }
