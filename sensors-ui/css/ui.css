@@ -82,6 +82,10 @@
 	box-shadow: 0 2px 8px rgba(14, 20, 26, 0.1);
 }
 
+	.sensors .table-header-left nav {
+		max-width: 960px;
+	}
+
 	.sensors .table-header .table-header-right .btn-icon {
 		margin-left: 10px;
 	}
