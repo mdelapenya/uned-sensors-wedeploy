@@ -50,19 +50,6 @@
 		transition: color 0.3s ease-in-out;
 	}
 
-	[class^="icon-12-"], [class*="icon-12-"] {
-		speak: none;
-		font-family: "icon-12";
-		font-size: 1.2rem;
-		font-style: normal;
-		font-variant: normal;
-		font-weight: normal;
-		line-height: 100%;
-		letter-spacing: 0;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
 .sensors .table-header, .sensors .table-footer {
 	background: white;
 	display: -webkit-box;
