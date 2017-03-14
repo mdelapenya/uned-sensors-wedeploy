@@ -10,6 +10,7 @@ function getSensors(type) {
 
 function plotSensors(sensors) {
 	var html = '';
+	var footer = '';
 	var list = document.getElementById('sensorsList');
 
 	if (sensors.length > 0) {
@@ -43,6 +44,20 @@ function plotSensors(sensors) {
 			</table>
 		</span>
 	</div>`;
+
+		footer += `<div class="table-footer">
+		<div class="table-footer-left"></div>
+			<div class="table-footer-right">
+				<div class="hidden-xs table-footer-dropdown form-group-select">
+					<div class="table-footer-pagination">
+						<label>1-${sensors.length} of ${sensors.length} items</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>`;
+
+		html += footer;
 	}
 
 	list.innerHTML = html;
