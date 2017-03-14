@@ -62,6 +62,10 @@ function plotSensors(sensors) {
 		html += footer;
 	}
 
+	var gridIcon = document.getElementById('gridIcon');
+
+	gridIcon.classList.toggle("btn-icon-selected");
+
 	list.innerHTML = html;
 }
 
