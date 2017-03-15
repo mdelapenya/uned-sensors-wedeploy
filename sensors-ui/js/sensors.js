@@ -19,11 +19,7 @@ function mapSensors(sensors) {
 
 	list.innerHTML = html;
 
-	var gridIcon = document.getElementById('gridIcon');
-	var mapIcon = document.getElementById('mapIcon');
-
-	mapIcon.classList.toggle("btn-icon-selected");
-	gridIcon.classList.remove("btn-icon-selected");
+	toggleIcons('mapIcon', 'gridIcon');
 }
 
 function plotSensors(sensors) {
@@ -80,11 +76,7 @@ function plotSensors(sensors) {
 		html += footer;
 	}
 
-	var gridIcon = document.getElementById('gridIcon');
-	var mapIcon = document.getElementById('mapIcon');
-
-	gridIcon.classList.toggle("btn-icon-selected");
-	mapIcon.classList.remove("btn-icon-selected");
+	toggleIcons('gridIcon', 'mapIcon');
 
 	list.innerHTML = html;
 }
@@ -93,4 +85,12 @@ function timeConverter(timestamp){
 	var currentDate = new Date(parseInt(timestamp));
 
 	return currentDate.toLocaleString();
+}
+
+function toggleIcons(activeIconId, inactiveIconId) {
+	var activeIcon = document.getElementById(activeIconId);
+	var inactiveIcon = document.getElementById(inactiveIconId);
+
+	activeIcon.classList.toggle("btn-icon-selected");
+	inactiveIcon.classList.remove("btn-icon-selected");
 }
