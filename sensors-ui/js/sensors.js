@@ -1,3 +1,30 @@
+function addMarker(map, bounds, infoWindow, sensor) {
+	var latLong = {lat: parseFloat(sensor.latitude), lng: parseFloat(sensor.longitude)};
+	var date = timeConverter(sensor.timestamp);
+
+	var title = sensor.sensorId + ' - ' + sensor.applicationId + '(' + date + ')';
+
+	var marker = new google.maps.Marker({
+		position: latLong,
+		map: map,
+		title: title
+	});
+
+	bounds.extend(marker.position);
+
+	var contentString = `<div class="metric">
+	<h1>${sensor.sensorId}</h1>
+	<h2>${sensor.latitude}, ${sensor.longitude}</h2>
+	<h3>Metric: ${sensor.metric} ${sensor.metricUnits}, read on ${date}, from ${sensor.applicationId}</h3>
+</div>`;
+
+	infoWindow.setContent(contentString);
+
+	marker.addListener('click', function() {
+		infoWindow.open(map, marker);
+	});
+}
+
 function getSensors(mode) {
 	return WeDeploy.data('data.mdelapenya-sensors.wedeploy.io')
 		.get('sensors')
@@ -15,11 +42,20 @@ function getSensors(mode) {
 
 var googleMap;
 
-function initMap() {
+function initMap(sensors) {
 	googleMap = new google.maps.Map(document.getElementById('map'), {
 		center: new google.maps.LatLng(51.508742,-0.120850),
 		zoom: 5
 	});
+
+	var bounds = new google.maps.LatLngBounds();
+	var infoWindow = new google.maps.InfoWindow();
+
+	sensors.forEach(function(sensor) {
+		addMarker(googleMap, bounds, infoWindow, sensor);
+	});
+
+	googleMap.fitBounds(bounds);
 }
 
 function mapSensors(sensors) {
@@ -33,7 +69,7 @@ function mapSensors(sensors) {
 
 	list.innerHTML = '';
 
-	initMap();
+	initMap(sensors);
 }
 
 function plotSensors(sensors) {
