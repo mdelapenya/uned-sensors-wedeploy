@@ -131,9 +131,9 @@ por cada uno de los microservicios a desarrollar.
 Para consultar la estructura y organización del código de cada microservicio, consulte el fichero
 `README.md` de cada servicio individual.
 
-* [API REST](./sensors-api/README.md)
-* [Almacenamiento persistente de métricas](./sensors-data/README.md).
-* [Interfaz de usuario](./sensors-ui/README.md).
+* [API REST](./sensors-api/README.md#estructura-del-proyecto)
+* [Almacenamiento persistente de métricas](./sensors-data/README.md#estructura-del-proyecto).
+* [Interfaz de usuario](./sensors-ui/README.md#estructura-del-proyecto).
 
 ## Pruebas
 
