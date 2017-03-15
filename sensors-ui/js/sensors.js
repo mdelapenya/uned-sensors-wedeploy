@@ -13,19 +13,37 @@ function getSensors(mode) {
 		});
 }
 
+var googleMap;
+
+function initMap() {
+	googleMap = new google.maps.Map(document.getElementById('map'), {
+		center: new google.maps.LatLng(51.508742,-0.120850),
+		zoom: 5
+	});
+}
+
 function mapSensors(sensors) {
-	var html = '';
+	toggleIcons('mapIcon', 'gridIcon');
+
+	var map = document.getElementById('map');
+
+	map.classList.toggle('map');
+
 	var list = document.getElementById('sensorsList');
 
-	list.innerHTML = html;
+	list.innerHTML = '';
 
-	toggleIcons('mapIcon', 'gridIcon');
+	initMap();
 }
 
 function plotSensors(sensors) {
 	var html = '';
 	var footer = '';
 	var list = document.getElementById('sensorsList');
+	var map = document.getElementById('map');
+
+	map.innerHTML = '';
+	map.classList.toggle('map');
 
 	if (sensors.length > 0) {
 		html += `<div class="datatable">
