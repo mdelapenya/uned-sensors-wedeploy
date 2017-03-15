@@ -29,6 +29,27 @@ plataforma **WeDeploy** que el servicio actual es del tipo `hosting`, así como 
 
 Para consultar el descriptor del servicio de datos, por favor seguir [este enlace](./container.json).
 
+En cuanto al resto de ficheros estáticos, tanto HTML, como CSS y JS, se organizan de la siguiente manera:
+
+### Directorio _error
+
+**WeDeploy** define un convenio de nombres para tratar los mensaje de error de HTTP, de modo que a
+cada código de error HTTP (404, 500, etc.) le corresponde un documento HTML cuyo nombre coincide con
+el código de error, por ejemplo `404.html`. Estos ficheros se encuentran bajo el directorio `_errors`.
+
+### Hojas de estilo
+
+Las hojas de estilo CSS se encuentran bajo el directorio `css`.
+
+### Scripts de Javascript
+
+Los ficheros de script de Javascript se encuentran bajo el directorio `js`. Será en estos ficheros
+donde se escriba la lógica del código a ejecutar en el cliente (navegador).
+
+### Documentos HTML
+
+Los documentos HTML se encuentran directamente en la raíz del proyecto.
+
 En la siguiente imagen aparecen los elementos antes mencionados:
 
 ![Estructura del servicio de datos](../static/ui_project_layout.png)
