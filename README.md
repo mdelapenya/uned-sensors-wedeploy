@@ -34,8 +34,9 @@ representarán las métricas enviadas por los dispositivos que instalen la aplic
 Para consultar la documentación relativa a la aplicación Android desarrollada con anterioridad, actualizada
 con el desarrollo necesario para comunicarse con la plataforma IoT, puede seguirse [el siguiente enlace](https://github.com/mdelapenya/uned-sensors/blob/master/README.md).
 
-En el escenario del trabajo propuesto, la plataforma IoT a desarrollar consta de tres piezas, todas
-alojadas en un PaaS (*Platform as a Service*) representando la plataforma IoT:
+En el escenario del trabajo propuesto, se ha optado por desarrollar una plataforma IoT específica para
+el trabajo, que constará de tres piezas, todas alojadas en un PaaS (*Platform as a Service*)
+representando la plataforma IoT:
 
 * API REST para manejar los recursos asociados a métricas: envío y consulta de métricas.
 * Almacenamiento persistente de métricas.
@@ -117,7 +118,9 @@ utilizado `ElasticSearch`, que es el almacenamiento ofrecido de forma predefinid
 
 ### Sistema de Build
 
-Para acceder a la documentación de este microservicio por favor consulte [el siguiente enlace](./sensors-api/README.md).
+El único microservicio que tiene un sistema de Build es el del API, puesto que los otros dos servicios
+se refieren a contenido estático no compilado. Para acceder a la documentación de este microservicio
+de API por favor consulte [el siguiente enlace](./sensors-api/README.md#sistema-de-build).
 
 ### Organización del código
 
