@@ -2,10 +2,28 @@ function getSensors(mode) {
 	return WeDeploy.data('data.mdelapenya-sensors.wedeploy.io')
 		.get('sensors')
 		.then(function(sensors) {
-			plotSensors(sensors);
+			if (mode == 'grid') {
+				plotSensors(sensors);
+			}
+			else {
+				mapSensors(sensors);
+			}
 
 			return this;
 		});
+}
+
+function mapSensors(sensors) {
+	var html = '';
+	var list = document.getElementById('sensorsList');
+
+	list.innerHTML = html;
+
+	var gridIcon = document.getElementById('gridIcon');
+	var mapIcon = document.getElementById('mapIcon');
+
+	mapIcon.classList.toggle("btn-icon-selected");
+	gridIcon.classList.remove("btn-icon-selected");
 }
 
 function plotSensors(sensors) {
@@ -63,8 +81,10 @@ function plotSensors(sensors) {
 	}
 
 	var gridIcon = document.getElementById('gridIcon');
+	var mapIcon = document.getElementById('mapIcon');
 
 	gridIcon.classList.toggle("btn-icon-selected");
+	mapIcon.classList.remove("btn-icon-selected");
 
 	list.innerHTML = html;
 }

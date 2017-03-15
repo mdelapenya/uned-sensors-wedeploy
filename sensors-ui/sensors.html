@@ -35,10 +35,10 @@
 								</nav>
 							</div>
 							<div class="table-header-right">
-								<a class="btn-icon btn-link" id="gridIcon" onclick="javascript:getSensors();">
+								<a class="btn-icon btn-link" id="gridIcon" onclick="javascript:getSensors('grid');">
 									<span class="icon-12-table"></span>
 								</a>
-								<a class="btn-icon btn-link " href="#">
+								<a class="btn-icon btn-link " id="mapIcon" onclick="javascript:getSensors('map');">
 									<span class="icon-12-pin"></span>
 								</a>
 							</div>
@@ -55,7 +55,7 @@
 	<script src="/js/sensors.js"></script>
 
 	<script>
-		getSensors();
+		getSensors('grid');
 	</script>
 </body>
 </html>
