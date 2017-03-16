@@ -1,9 +1,9 @@
 # Microservicio de API
 
 Este microservicio será el responsable de recibir las peticiones de consulta y modificación de métricas,
-enviando dichas peticiones al almacenamiento persistente, que será implementado por otro microservicio.
-Para ello, el API REST ha sido escrito en lenguaje Java en su versión 8, implementado mediante `Spring
-Boot`.
+enviando dichas peticiones al almacenamiento persistente, que será implementado por otro microservicio
+(ver [aquí](../sensors-data/README.md)). Para ello, el API REST ha sido escrito en lenguaje Java en
+su versión 8, implementado mediante `Spring Boot`.
 
 La plataforma IoT a desarrollar debe exponer los siguiente recursos REST (o *endpoints*):
 
