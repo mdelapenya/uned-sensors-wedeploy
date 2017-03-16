@@ -1,4 +1,4 @@
-function addMarker(map, bounds, infoWindow, sensor) {
+function addMarker(map, bounds, sensor) {
 	var latLong = {lat: parseFloat(sensor.latitude), lng: parseFloat(sensor.longitude)};
 	var date = timeConverter(sensor.timestamp);
 
@@ -17,6 +17,8 @@ function addMarker(map, bounds, infoWindow, sensor) {
 	<h2>${sensor.latitude}, ${sensor.longitude}</h2>
 	<h3>Metric: ${sensor.metric} ${sensor.metricUnits}, read on ${date}, from ${sensor.applicationId}</h3>
 </div>`;
+
+	var infoWindow = new google.maps.InfoWindow();
 
 	infoWindow.setContent(contentString);
 
@@ -49,10 +51,9 @@ function initMap(sensors) {
 	});
 
 	var bounds = new google.maps.LatLngBounds();
-	var infoWindow = new google.maps.InfoWindow();
 
 	sensors.forEach(function(sensor) {
-		addMarker(googleMap, bounds, infoWindow, sensor);
+		addMarker(googleMap, bounds, sensor);
 	});
 
 	googleMap.fitBounds(bounds);
