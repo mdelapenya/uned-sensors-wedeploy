@@ -223,3 +223,53 @@ objeto Java serializado a JSON.
 En el momento de la redacción de este documento, la serialización nativa con Jackson no está implementada,
 por tanto el objeto JSON se construye mediante la concatenación de Strings en el método `toString()`
 de la clase `SensorMetric`.
+
+### Paquete raíz
+
+En este paquete se encuentran las clases de inicialización de la aplicación, así como el controlador
+principal de la misma.
+
+Se entiende por controlador aquella clase responsable de dirigir el flujo de la aplicación de la vista
+al modelo, y viceversa, en el patrón MVC (*Model - View - Controller*).
+
+Respecto a la clase de inicialización, `SensorsApiApplication.java` se trata de una clase con un único
+método `main` que utilizando `Spring Boot` realizará el startup de la aplicación.
+
+```java
+    public static void main(String[] args) {
+        SpringApplication.run(SensorsApiApplication.class, args);
+    }
+```
+
+En cuanto al único controlador de la aplicación, la clase `SensorsRestController.java`, podemos observar
+que ésta está anotada con las anotaciones `@RestController` y `@RequestMapping("/sensors")`. Dichas
+anotaciones le indican a `Spring` que enrute las peticiones HTTP al path `/sensors` a los diferentes
+métodos de la clase.
+
+Cada uno de los métodos de la clase estarán anotados a su vez con la anotación `@RequestMapping`, que
+define el mapeo adecuado al verbo HTTP indicado en la parametrización de la anotación. Por ejemplo:
+
+```java
+    @RequestMapping(method = RequestMethod.DELETE)
+    public Collection<SensorRow> delete() {...}
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
+    public Collection<SensorRow> getSensor(@PathVariable String sensorId) {...}
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Collection<SensorRow> getSensors() {...}
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> track(@RequestBody Metric metric) {...}
+```
+
+Para el caso del método `getSensor(@PathVariable String sensorId)`, la anotación `@PathVariable` le
+indica a `Spring` que en el path `/sensors` de la aplicación se admitirán peticiones al recurso principal,
+tomando todo lo que llegue detrás de la barra tras `/sensors/` como un parámetro al método, siguiendo
+los patrones de diseño de REST.
+
+Para el caso del método `track(@RequestBody Metric metric)`, responsable de manejar las peticiones
+HTTP POST que recibe la aplicación, la anotación `@RequestBody` indica que la petición debe contener
+un objeto en formato JSON que pueda ser parseado al objeto `Metric`, de modo que los campos del objeto
+JSON se correspondan con los atributos de la clase `Metric`. Este parseo lo realizan las clases de la
+librería de serialización y parseo JSON `Jackson`, incluída por defecto en `Spring Boot`.
