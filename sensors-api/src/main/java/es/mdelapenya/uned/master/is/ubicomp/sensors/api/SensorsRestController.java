@@ -23,6 +23,7 @@ import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,7 @@ public class SensorsRestController {
 		return dataRepository.wipeOut();
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
 	public Collection<SensorRow> getSensor(@PathVariable String sensorId) {
 		Collection<SensorRow> rows = dataRepository.findBySensorId(sensorId);
@@ -56,11 +58,13 @@ public class SensorsRestController {
 		throw new NoSuchSensorException(sensorId);
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<SensorRow> getSensors() {
 		return this.dataRepository.findAllSensors();
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> track(@RequestBody Metric metric) {
 		dataRepository.save(metric);
