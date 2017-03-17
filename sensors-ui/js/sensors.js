@@ -27,9 +27,24 @@ function addMarker(map, bounds, sensor) {
 	});
 }
 
-function getSensors(mode) {
-	return WeDeploy.data('data.mdelapenya-sensors.wedeploy.io')
-		.get('sensors')
+function getSensors(mode, sensorId) {
+	var path = '/sensors';
+
+	if (sensorId) {
+		path += '/' + sensorId;
+	}
+
+	var url = 'http://api.mdelapenya-sensors.wedeploy.io' + path;
+
+	return fetch(url)
+		.then(function(response) {
+			if(response.ok) {
+				return response.json();
+			}
+			else if (response.status !== 200) {
+				throw new Error("Not 200 response");
+			}
+		})
 		.then(function(sensors) {
 			if (mode == 'grid') {
 				plotSensors(sensors);
@@ -134,6 +149,20 @@ function plotSensors(sensors) {
 	toggleIcons('gridIcon', 'mapIcon');
 
 	list.innerHTML = html;
+}
+
+function search() {
+	var icon = 'grid';
+
+	var mapIcon = document.getElementById('mapIcon');
+
+	if (mapIcon.classList.contains('btn-icon-selected')) {
+		icon = 'map';
+	}
+
+	var sensorId = document.getElementById('txtSearch').value;
+
+	getSensors(icon, sensorId);
 }
 
 function timeConverter(timestamp){
