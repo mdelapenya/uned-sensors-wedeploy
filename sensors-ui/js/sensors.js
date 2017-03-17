@@ -1,3 +1,7 @@
+var googleMap;
+var list = document.getElementById('sensorsList');
+var map = document.getElementById('map');
+
 function addMarker(map, bounds, sensor) {
 	var latLong = {lat: parseFloat(sensor.latitude), lng: parseFloat(sensor.longitude)};
 	var date = timeConverter(sensor.timestamp);
@@ -57,8 +61,6 @@ function getSensors(mode, sensorId) {
 		});
 }
 
-var googleMap;
-
 function initMap(sensors) {
 	googleMap = new google.maps.Map(document.getElementById('map'), {
 		center: new google.maps.LatLng(51.508742,-0.120850),
@@ -77,11 +79,7 @@ function initMap(sensors) {
 function mapSensors(sensors) {
 	toggleIcons('mapIcon', 'gridIcon');
 
-	var map = document.getElementById('map');
-
 	map.classList.toggle('map');
-
-	var list = document.getElementById('sensorsList');
 
 	list.innerHTML = '';
 
@@ -91,8 +89,6 @@ function mapSensors(sensors) {
 function plotSensors(sensors) {
 	var html = '';
 	var footer = '';
-	var list = document.getElementById('sensorsList');
-	var map = document.getElementById('map');
 
 	map.innerHTML = '';
 	map.classList.toggle('map');
