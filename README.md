@@ -20,6 +20,13 @@ La práctica consiste en la utilización de las plataformas para el Internet de 
 información sensorial (preferiblemente con el sensor definido en la PEC2, MIVELOCIDAD1) y proponer una
 aplicación sobre la plataforma elegida con esta información.
 
+Se puede utilizar cualquiera de las siguientes plataformas OpenSource:
+
+* Kaa: Independiente de plataforma - C SDK [https://www.kaaproject.org](https://www.kaaproject.org)
+* Macchina.io: Linux - JavaScript/C++ [https://macchina.io](https://macchina.io)
+* Iotivity: Independiente de plataforma - C/C++ [https://www.iotivity.org](https://www.iotivity.org)
+* SiteWhere: Linux - Java [http://www.sitewhere.org](http://www.sitewhere.org)
+
 También es posible utilizar otro tipo de plataforma no OpenSource como puede ser principalmente Autodesk
 Fusion Connect, AWS (Amazon Web Services), Google Cloud IoT, Microsft Azure IoT, IBM Watson IoT o
 ThingWorx, teniendo en cuenta las limitaciones correspondientes a cada caso en las versiones "free".
