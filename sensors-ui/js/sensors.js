@@ -186,4 +186,6 @@ function toggleIcons(activeIconId, inactiveIconId) {
 
 	activeIcon.classList.toggle("btn-icon-selected");
 	inactiveIcon.classList.remove("btn-icon-selected");
+
+	metricsContent.style = '';
 }
