@@ -1,6 +1,5 @@
 var googleMap;
-var list = document.getElementById('sensorsList');
-var map = document.getElementById('map');
+var metricsContent = document.getElementById('metricsContent');
 
 function addMarker(map, bounds, sensor) {
 	var latLong = {lat: parseFloat(sensor.latitude), lng: parseFloat(sensor.longitude)};
@@ -68,7 +67,7 @@ function getSensors(mode, sensorId) {
 }
 
 function initMap(sensors) {
-	googleMap = new google.maps.Map(document.getElementById('map'), {
+	googleMap = new google.maps.Map(metricsContent, {
 		center: new google.maps.LatLng(51.508742,-0.120850),
 		zoom: 5
 	});
@@ -85,24 +84,20 @@ function initMap(sensors) {
 function mapSensors(sensors) {
 	toggleIcons('mapIcon', 'gridIcon');
 
-	map.classList.toggle('map');
-
-	list.innerHTML = '';
+	metricsContent.classList.add('map');
 
 	initMap(sensors);
 }
 
 function noResults() {
-	list.innerHTML = '';
-	map.innerHTML = '';
+	metricsContent.innerHTML = '';
 }
 
 function plotSensors(sensors) {
 	var html = '';
 	var footer = '';
 
-	map.innerHTML = '';
-	map.classList.toggle('map');
+	metricsContent.classList.remove('map');
 
 	if (sensors.length > 0) {
 		html += `<div class="datatable">
@@ -155,7 +150,7 @@ function plotSensors(sensors) {
 
 	toggleIcons('gridIcon', 'mapIcon');
 
-	list.innerHTML = html;
+	metricsContent.innerHTML = html;
 }
 
 function search() {
