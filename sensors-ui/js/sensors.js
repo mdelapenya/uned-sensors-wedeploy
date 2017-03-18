@@ -46,10 +46,16 @@ function getSensors(mode, sensorId) {
 				return response.json();
 			}
 			else if (response.status !== 200) {
-				throw new Error("Not 200 response");
+				return [];
 			}
 		})
 		.then(function(sensors) {
+			if (!sensors || sensors.length === 0) {
+				noResults();
+
+				return;
+			}
+
 			if (mode == 'grid') {
 				plotSensors(sensors);
 			}
@@ -84,6 +90,11 @@ function mapSensors(sensors) {
 	list.innerHTML = '';
 
 	initMap(sensors);
+}
+
+function noResults() {
+	list.innerHTML = '';
+	map.innerHTML = '';
 }
 
 function plotSensors(sensors) {
