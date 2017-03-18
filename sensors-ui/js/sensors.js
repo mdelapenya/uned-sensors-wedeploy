@@ -90,7 +90,14 @@ function mapSensors(sensors) {
 }
 
 function noResults() {
-	metricsContent.innerHTML = '';
+	metricsContent.innerHTML = `<div class="empty-data">
+	<div class="project-notfound">
+		<div class="project-notfound-icon">
+			<span class="icon-16-database"></span>
+		</div>
+		<p class="project-notfound-text">No results found.</p>
+	</div>
+</div>`;
 }
 
 function plotSensors(sensors) {

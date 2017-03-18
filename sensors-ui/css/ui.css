@@ -8,6 +8,10 @@ html, body {
 	padding: 0;
 }
 
+#metricsContent {
+	height: 100%;
+}
+
 .btn-icon {
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
@@ -35,9 +39,41 @@ html, body {
 		border-color: transparent;
 	}
 
+.empty-collection, .empty-data {
+	display: block;
+}
+
+.no-data .empty-data {
+	display: block;
+}
+
 .map {
 	height: 100%;
 	min-height: 768px;
+}
+
+.no-result {
+	font-size: 10px;
+}
+
+.project-notfound {
+	text-align: center;
+}
+
+.project-notfound-icon {
+	background: rgba(0, 212, 106, 0.2);
+	border-radius: 50%;
+	display: block;
+	height: 120px;
+	margin: 0 auto 45px;
+	width: 120px;
+}
+
+.project-notfound-text {
+	color: rgba(14, 20, 26, 0.8);
+	font-family: "Galano", sans-serif;
+	font-weight: 700;
+	font-size: 18px;
 }
 
 .sensors .btn-icon {
@@ -60,6 +96,13 @@ html, body {
 		-webkit-transition: color 0.3s ease-in-out;
 		transition: color 0.3s ease-in-out;
 	}
+
+.sensors .empty-collection .project-notfound, .empty-data .project-notfound {
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
 
 .sensors .table-header, .sensors .table-footer {
 	background: white;
