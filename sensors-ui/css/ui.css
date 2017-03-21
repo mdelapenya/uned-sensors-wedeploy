@@ -6,6 +6,21 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	background: #0e141a;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+	font-size: 72px;
+	font-weight: 700;
+	color: #00d46a;
+	margin: 0;
+}
+
+h2 {
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.9);
+	margin: 0;
 }
 
 #metricsContent {
@@ -39,8 +54,16 @@ html, body {
 		border-color: transparent;
 	}
 
+.container {
+	text-align: center;
+}
+
 .empty-collection, .empty-data {
 	display: block;
+}
+
+.logo {
+	text-align: center;
 }
 
 .no-data .empty-data {
@@ -85,6 +108,10 @@ html, body {
 	width: 36px;
 	display: inline-block;
 	text-align: center;
+}
+
+.sensors {
+	background-color: #ffffff;
 }
 
 .sensors .btn-icon:focus, .sensors .btn-icon:hover, .sensors .btn-icon.btn-icon-selected {
