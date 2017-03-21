@@ -112,6 +112,7 @@ h2 {
 
 .sensors {
 	background-color: #ffffff;
+	border-radius: 20px;
 }
 
 .sensors .btn-icon:focus, .sensors .btn-icon:hover, .sensors .btn-icon.btn-icon-selected {
@@ -148,6 +149,8 @@ h2 {
 .sensors .table-header {
 	z-index: 99;
 	box-shadow: 0 2px 8px rgba(14, 20, 26, 0.1);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 
 	.sensors .table-header-left nav {
@@ -167,6 +170,8 @@ h2 {
 	box-shadow: 0 0 8px rgba(14, 20, 26, 0.1);
 	bottom: -60px;
 	z-index: 98;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
 	.sensors .table-footer .table-footer-right .table-footer-pagination {
