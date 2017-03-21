@@ -61,6 +61,10 @@ h2 {
 
 .empty-collection, .empty-data {
 	display: block;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	position: relative;
+	min-height: 250px;
 }
 
 .logo {
@@ -127,10 +131,11 @@ h2 {
 	}
 
 .sensors .empty-collection .project-notfound, .empty-data .project-notfound {
-	position: relative;
+	position: absolute;
 	top: 50%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
+	width: 100%;
 }
 
 .sensors .table-header, .sensors .table-footer {
