@@ -16,9 +16,9 @@ function addMarker(map, bounds, sensor) {
 	bounds.extend(marker.position);
 
 	var contentString = `<div class="metric">
-	<h1>${sensor.sensorId}</h1>
-	<h2>${sensor.latitude}, ${sensor.longitude}</h2>
-	<h3>Metric: ${sensor.metric} ${sensor.metricUnits}, read on ${date}, from ${sensor.applicationId}</h3>
+	<h3>${sensor.sensorId}</h3>
+	<h4>${sensor.latitude}, ${sensor.longitude}</h4>
+	<p>Metric: ${sensor.metric} ${sensor.metricUnits}, read on ${date}, from ${sensor.applicationId}</p>
 </div>`;
 
 	var infoWindow = new google.maps.InfoWindow();
