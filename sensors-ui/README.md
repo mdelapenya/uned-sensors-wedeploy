@@ -46,7 +46,116 @@ para definir la apariencia del interfaz de usuario. Se basan en dos ficheros:
 ### Scripts de Javascript
 
 Los ficheros de script de Javascript se encuentran bajo el directorio `js`. Será en estos ficheros
-donde se escriba la lógica del código a ejecutar en el cliente (navegador).
+donde se escriba la lógica del código a ejecutar en el cliente (navegador). En este caso, existe un
+único fichero Javascript, `sensors.js`, que será el responsable del código del lado del cliente,
+ejecutado en un navegador.
+
+Este fichero contendrá funciones que o bien invocan los otros servicios en **WeDeploy**, o bien son
+de utilidad para generar etiquetas HTML que representen la interfaz de usuario, o bien funciones
+relacionadas con la representación en un mapa de Google Maps.
+
+El siguiente bloque de código representa la función de invocación del servicio de comunicación con la
+plataforma. Como la respuesta es del tipo JSON, se almacenará en un array de objetos JSON de Javascript
+para que pueda ser procesada por la aplicación. Como puede observarse, utiliza el método `fetch`,
+nativo de Javascript, para invocar el servicio remoto del API. Esta función necesita de un `callback`
+para procesar de manera **asíncrona** la respuesta. En este `callback` se verifica que el resultado
+ha retornado una respuesta HTTP correcta, con código de estado 200. De lo contrario, se retorna un
+array vacío de objetos. Esta comprobación es necesaria puesto que el API retorna un error HTTP 404 en
+cuanto no existen datos, como es de esperar.
+
+Al final, si la petición tuvo éxito se populará el array `metrics` con la respuesta, y se determinará
+el tipo de representación (parámetro `mode`). Si éste tiene un valor igual a `grid`, entonces se
+representará una tabla de datos con las métricas disponibles. Si tiene un valor `map`, entonces se
+las métricas se representarán en un mapa.
+
+```javascript
+function getMetrics(mode, sensorId) {
+	var path = '/sensors';
+
+	if (sensorId) {
+		path += '/' + sensorId;
+	}
+
+	var url = 'http://api.mdelapenya-sensors.wedeploy.io' + path;
+
+	return fetch(url)
+		.then(function(response) {
+			if(response.ok) {
+				return response.json();
+			}
+			else if (response.status !== 200) {
+				return [];
+			}
+		})
+		.then(function(metrics) {
+			if (!metrics || metrics.length === 0) {
+				noResults();
+
+				return;
+			}
+
+			if (mode == 'grid') {
+				plotMetrics(metrics);
+			}
+			else {
+				mapMetrics(metrics);
+			}
+
+			return this;
+		});
+}
+```
+
+El siguiente bloque de código muestra la función `plotMetric`, que a partir de un objeto `metric`,
+representado por un objeto JSON de Javascript, genera el marcado HTML para representar una fila en una
+tabla, con tantas celdas como atributos tenga el objeto métrica.
+
+```javascript
+function plotMetric(metric) {
+	return `<tr data-sensor-id="${metric.sensorId}">
+	<td><span class="datatable-string ${sensors[i].applicationId}">${metric.applicationId}</span></td>
+	<td><span class="datatable-string sensorId">${metric.sensorId}</span></td>
+	<td><span class="datatable-string coordinates">${metric.latitude}, ${metric.longitude}</span></td>
+	<td><span class="datatable-string metric">${metric.metric}</span></td>
+	<td><span class="datatable-string metricUnits">${metric.metricUnits}</span></td>
+	<td><span class="datatable-string timestamp">${timeConverter(metric.timestamp)}</span></td>
+</tr>`;
+}
+```
+
+El siguiente bloque de código muestra la función `mapMetrics`, que a partir de un array de métricas,
+inicializa el mapa de Google Maps en el que presentarlas.
+
+```javascript
+function mapMetrics(metrics) {
+	toggleIcons('mapIcon', 'gridIcon');
+
+	metricsContent.classList.add('map');
+
+	initMap(metrics);
+}
+```
+
+El bloque de código siguiente inicializa el mapa de Google Maps a partir de una colección de métricas,
+pasado por parámetro. Se itera por todos ellos para añadir un marcador en el mapa, utilizando el API
+de Google Maps para ello:
+
+```javascript
+function initMap(metrics) {
+	googleMap = new google.maps.Map(metricsContent, {
+		center: new google.maps.LatLng(51.508742,-0.120850),
+		zoom: 5
+	});
+
+	var bounds = new google.maps.LatLngBounds();
+
+	metrics.forEach(function(metric) {
+		addMarker(googleMap, bounds, metric);
+	});
+
+	googleMap.fitBounds(bounds);
+}
+```
 
 ### Documentos HTML
 
