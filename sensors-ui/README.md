@@ -11,8 +11,6 @@ el primero recuperando todas las existentes, y el segundo recuperando todas las 
 un sensor. Por tanto se podrá desarrollar una aplicación en la tecnología deseada que permita el
 consumo de los datos expuestos por el API REST utilizando los verbos HTTP adecuados.
 
-Para el caso concreto del trabajo, se ha desarrollado una aplicación 
-
 ## Estructura del proyecto
 
 El microservicio de interfaz de usuario contiene únicamente un descriptor, propio de **WeDeploy**, en
