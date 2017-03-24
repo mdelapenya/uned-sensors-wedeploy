@@ -30,6 +30,20 @@ function addMarker(map, bounds, sensor) {
 	});
 }
 
+function getFooter(sensors) {
+	return `<div class="table-footer">
+		<div class="table-footer-left"></div>
+			<div class="table-footer-right">
+				<div class="hidden-xs table-footer-dropdown form-group-select">
+					<div class="table-footer-pagination">
+						<label>1-${sensors.length} of ${sensors.length} items</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>`;
+}
+
 function getSensors(mode, sensorId) {
 	var path = '/sensors';
 
@@ -102,7 +116,6 @@ function noResults() {
 
 function plotSensors(sensors) {
 	var html = '';
-	var footer = '';
 
 	metricsContent.classList.remove('map');
 
@@ -140,19 +153,7 @@ function plotSensors(sensors) {
 		</span>
 	</div>`;
 
-		footer += `<div class="table-footer">
-		<div class="table-footer-left"></div>
-			<div class="table-footer-right">
-				<div class="hidden-xs table-footer-dropdown form-group-select">
-					<div class="table-footer-pagination">
-						<label>1-${sensors.length} of ${sensors.length} items</label>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>`;
-
-		html += footer;
+		html += getFooter(sensors);
 	}
 
 	toggleIcons('gridIcon', 'mapIcon');
