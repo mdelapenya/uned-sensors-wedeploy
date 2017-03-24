@@ -28,7 +28,7 @@ Se puede utilizar cualquiera de las siguientes plataformas OpenSource:
 * SiteWhere: Linux - Java [http://www.sitewhere.org](http://www.sitewhere.org)
 
 También es posible utilizar otro tipo de plataforma no OpenSource como puede ser principalmente Autodesk
-Fusion Connect, AWS (Amazon Web Services), Google Cloud IoT, Microsft Azure IoT, IBM Watson IoT o
+Fusion Connect, AWS (Amazon Web Services), Google Cloud IoT, Microsoft Azure IoT, IBM Watson IoT o
 ThingWorx, teniendo en cuenta las limitaciones correspondientes a cada caso en las versiones "free".
 
 ## Arquitectura de la solución
@@ -41,9 +41,9 @@ representarán las métricas enviadas por los dispositivos que instalen la aplic
 Para consultar la documentación relativa a la aplicación Android desarrollada con anterioridad, actualizada
 con el desarrollo necesario para comunicarse con la plataforma IoT, puede seguirse [el siguiente enlace](https://github.com/mdelapenya/uned-sensors/blob/master/README.md).
 
-En el escenario del trabajo propuesto, se ha optado por desarrollar una plataforma IoT específica para
-el trabajo, que constará de tres piezas, todas alojadas en un PaaS (*Platform as a Service*)
-representando la plataforma IoT:
+En el escenario del trabajo propuesto, y por simplicidad, se ha optado por desarrollar una plataforma
+IoT específica para el trabajo, que constará de tres piezas, todas alojadas en un PaaS (*Platform as
+a Service*) representando la plataforma IoT:
 
 * API REST para manejar los recursos asociados a métricas: envío y consulta de métricas.
 * Almacenamiento persistente de métricas.
