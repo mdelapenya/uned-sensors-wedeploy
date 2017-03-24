@@ -25,7 +25,7 @@ plataforma **WeDeploy** que el servicio actual es del tipo `hosting`, así como 
 }
 ```
 
-Para consultar el descriptor del servicio de datos, por favor seguir [este enlace](./container.json).
+Para consultar el descriptor del servicio de hosting de **WeDeploy**, por favor seguir [este enlace](./container.json).
 
 En cuanto al resto de ficheros estáticos, tanto HTML, como CSS y JS, se organizan de la siguiente manera:
 
