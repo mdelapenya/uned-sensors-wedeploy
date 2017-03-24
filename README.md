@@ -209,7 +209,61 @@ abierta y en primer plano, se enviará una métrica a la plataforma IoT.
 
 ### Plataforma IoT
 
-<!-- TODO Manual de instalación WeDeploy -->
+A continuación se presentan las URLs de los diferentes elementos que componen la plataforma:
+
+* API (todas las métricas): [http://api.mdelapenya-sensors.wedeploy.io/sensors](http://api.mdelapenya-sensors.wedeploy.io/sensors)
+* API (métricas de un sensor): [http://api.mdelapenya-sensors.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f](http://api.mdelapenya-sensors.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f)
+* Interfaz de Usuario: [http://ui.mdelapenya-sensors.wedeploy.io](http://ui.mdelapenya-sensors.wedeploy.io)
+
+#### Obtención de todas las métricas almacenadas
+
+Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors](http://api.mdelapenya-sensors.wedeploy.io/sensors), la aplicación representando el
+API responderá a la petición con el resultado de consultar al almacenamiento persistente sin filtros,
+de modo que devolverá todas las métricas almacenadas. La respuesta de la petición estará en formato
+JSON.
+
+![Resultados al filtrar por un sensor](static/screenshot_api_results.png)
+
+#### Obtención de todas las métricas almacenadas para un sensor en concreto
+
+Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId](http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId), la aplicación
+representando el API responderá a la petición con el resultado de consultar al almacenamiento persistente
+filtrando por la columna `sensorId`, de modo que devolverá todas las métricas almacenadas para el
+sensor especificado como parámetro. La respuesta de la petición estará en formato JSON.
+
+![Resultados al filtrar por un sensor](static/screenshot_api_results.png)
+
+Si no hubiese ninguna métrica almacenada para dicho identificador,
+lo que indica que el sensor no existe en la plataforma, un mensaje de error 404 de HTTP será retornado
+en la respuesta.
+
+![Resultados al filtrar por un sensor](static/screenshot_api_404.png)
+
+#### Interfaz de Usuario
+
+Accediendo a la URL http://ui.mdelapenya-sensors.wedeploy.io se mostrará el interfaz de usuario que
+mostrará las métricas almacenadas en la plataforma. Nada más acceder a la aplicación, se cargarán
+todas las métricas disponibles, en un formato tabular.
+
+![Interfaz de usuario: tabla de métricas](static/screenshot_ui_grid.png)
+
+Al lado del botón de buscar, a la derecha, se encuentran dos iconos. Uno de ellos representando un
+grid, y otro un pin. Seleccionando el icono de grid se mostrará el formato tabular antes mencionado,
+mientras que seleccionando el icono de pin se mostrarán todas las métricas en un mapa.
+
+![Interfaz de usuario: mapa de métricas](static/screenshot_ui_map.png)
+
+Este mapa aparecerá centrado en función a todas las métricas almacenadas, en el centro geométrico de
+todas ellas. Cada métrica será representada por un `pin` rojo, que al ser clicado mostrará en una
+ventana emergente la información de la métrica.
+
+![Interfaz de usuario: detalle de métrica](static/screenshot_ui_metric.png)
+
+Si utilizamos la caja de búsqueda, introduciendo un identificador de sensor que no exista, y pulsamos
+el botón de buscar, se mostrará un mensaje de información indicando que no existen métricas para el
+sensor seleccionado.
+
+![Interfaz de usuario: sensor no encontrado](static/screenshot_ui_empty.png)
 
 ## Instalación de la aplicación
 
