@@ -140,7 +140,7 @@ enlaces, relativos a cada una de los elementos software del proyecto:
 
 ### Lenguaje de programación
 
-Para los microservicios alojados en **WeDeploy** se han elegido dos tecnologías diferentes: para el API
+Para los microservicios alojados en **WeDeploy** se han elegido tres tecnologías diferentes: para el API
 REST se ha escogido el lenguaje Java en su versión 8, implementado mediante Spring Boot; para la
 aplicación de interfaz de usuario que representará las métricas almacenadas, se ha escogido utilizar
 HTML5, CSS3 y Javascript del lado del cliente; y para el almacenamiento persistente NoSQL se ha
