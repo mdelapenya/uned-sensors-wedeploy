@@ -37,7 +37,11 @@ el código de error, por ejemplo `404.html`. Estos ficheros se encuentran bajo e
 
 ### Hojas de estilo
 
-Las hojas de estilo CSS se encuentran bajo el directorio `css`.
+Las hojas de estilo CSS se encuentran bajo el directorio `css`. En ellas se encuentran los estilos
+para definir la apariencia del interfaz de usuario. Se basan en dos ficheros:
+
+* marble.css: fichero CSS obtenido directamente de **WeDeploy** ([https://github.com/wedeploy/marble/blob/master/build/marble.css](https://github.com/wedeploy/marble/blob/master/build/marble.css)).
+* ui.css: customizaciones específicas para el interfaz de usuario de la plataforma.
 
 ### Scripts de Javascript
 
