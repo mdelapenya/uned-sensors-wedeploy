@@ -114,6 +114,9 @@ private String getUniqueDeviceId() {
 }
 ```
 
+Otros sensores que quieran contribuir sus métricas a la plataforma tendrán que calcular el identificador
+del sensor de alguna manera, por ejemplo en base al hardware del sensor.
+
 ### Métricas
 
 El dispositivo emitirá señales indicando su posición actual, expresada en coordenadas latitud y longitud,
