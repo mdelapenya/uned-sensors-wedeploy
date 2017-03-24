@@ -114,6 +114,17 @@ function noResults() {
 </div>`;
 }
 
+function plotSensor(sensor) {
+	return `<tr data-sensor-id="${sensor.sensorId}">
+	<td><span class="datatable-string ${sensors[i].applicationId}">${sensor.applicationId}</span></td>
+	<td><span class="datatable-string sensorId">${sensor.sensorId}</span></td>
+	<td><span class="datatable-string coordinates">${sensor.latitude}, ${sensor.longitude}</span></td>
+	<td><span class="datatable-string metric">${sensor.metric}</span></td>
+	<td><span class="datatable-string metricUnits">${sensor.metricUnits}</span></td>
+	<td><span class="datatable-string timestamp">${timeConverter(sensor.timestamp)}</span></td>
+</tr>`;
+}
+
 function plotSensors(sensors) {
 	var html = '';
 
@@ -137,14 +148,7 @@ function plotSensors(sensors) {
 	}
 
 	for(var i = 0; i < sensors.length; i++) {
-		html += `<tr data-sensor-id="${sensors[i].sensorId}">
-	<td><span class="datatable-string ${sensors[i].applicationId}">${sensors[i].applicationId}</span></td>
-	<td><span class="datatable-string sensorId">${sensors[i].sensorId}</span></td>
-	<td><span class="datatable-string coordinates">${sensors[i].latitude}, ${sensors[i].longitude}</span></td>
-	<td><span class="datatable-string metric">${sensors[i].metric}</span></td>
-	<td><span class="datatable-string metricUnits">${sensors[i].metricUnits}</span></td>
-	<td><span class="datatable-string timestamp">${timeConverter(sensors[i].timestamp)}</span></td>
-</tr>`;
+		html += plotSensor(sensors[i]);
 	}
 
 	if (sensors.length > 0) {
