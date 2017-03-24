@@ -1,11 +1,11 @@
 var googleMap;
 var metricsContent = document.getElementById('metricsContent');
 
-function addMarker(map, bounds, sensor) {
-	var latLong = {lat: parseFloat(sensor.latitude), lng: parseFloat(sensor.longitude)};
-	var date = timeConverter(sensor.timestamp);
+function addMarker(map, bounds, metric) {
+	var latLong = {lat: parseFloat(metric.latitude), lng: parseFloat(metric.longitude)};
+	var date = timeConverter(metric.timestamp);
 
-	var title = sensor.sensorId + ' - ' + sensor.applicationId + '(' + date + ')';
+	var title = metric.sensorId + ' - ' + metric.applicationId + '(' + date + ')';
 
 	var marker = new google.maps.Marker({
 		position: latLong,
@@ -16,9 +16,9 @@ function addMarker(map, bounds, sensor) {
 	bounds.extend(marker.position);
 
 	var contentString = `<div class="metric">
-	<h3>${sensor.sensorId}</h3>
-	<h4>${sensor.latitude}, ${sensor.longitude}</h4>
-	<p>Metric: ${sensor.metric} ${sensor.metricUnits}, read on ${date}, from ${sensor.applicationId}</p>
+	<h3>${metric.sensorId}</h3>
+	<h4>${metric.latitude}, ${metric.longitude}</h4>
+	<p>Metric: ${metric.metric} ${metric.metricUnits}, read on ${date}, from ${metric.applicationId}</p>
 </div>`;
 
 	var infoWindow = new google.maps.InfoWindow();
@@ -30,13 +30,13 @@ function addMarker(map, bounds, sensor) {
 	});
 }
 
-function getFooter(sensors) {
+function getFooter(metrics) {
 	return `<div class="table-footer">
 		<div class="table-footer-left"></div>
 			<div class="table-footer-right">
 				<div class="hidden-xs table-footer-dropdown form-group-select">
 					<div class="table-footer-pagination">
-						<label>1-${sensors.length} of ${sensors.length} items</label>
+						<label>1-${metrics.length} of ${metrics.length} items</label>
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@ function getFooter(sensors) {
 	</div>`;
 }
 
-function getSensors(mode, sensorId) {
+function getMetrics(mode, sensorId) {
 	var path = '/sensors';
 
 	if (sensorId) {
@@ -62,25 +62,25 @@ function getSensors(mode, sensorId) {
 				return [];
 			}
 		})
-		.then(function(sensors) {
-			if (!sensors || sensors.length === 0) {
+		.then(function(metrics) {
+			if (!metrics || metrics.length === 0) {
 				noResults();
 
 				return;
 			}
 
 			if (mode == 'grid') {
-				plotSensors(sensors);
+				plotMetrics(metrics);
 			}
 			else {
-				mapSensors(sensors);
+				mapMetrics(metrics);
 			}
 
 			return this;
 		});
 }
 
-function initMap(sensors) {
+function initMap(metrics) {
 	googleMap = new google.maps.Map(metricsContent, {
 		center: new google.maps.LatLng(51.508742,-0.120850),
 		zoom: 5
@@ -88,19 +88,19 @@ function initMap(sensors) {
 
 	var bounds = new google.maps.LatLngBounds();
 
-	sensors.forEach(function(sensor) {
-		addMarker(googleMap, bounds, sensor);
+	metrics.forEach(function(metric) {
+		addMarker(googleMap, bounds, metric);
 	});
 
 	googleMap.fitBounds(bounds);
 }
 
-function mapSensors(sensors) {
+function mapMetrics(metrics) {
 	toggleIcons('mapIcon', 'gridIcon');
 
 	metricsContent.classList.add('map');
 
-	initMap(sensors);
+	initMap(metrics);
 }
 
 function noResults() {
@@ -114,23 +114,23 @@ function noResults() {
 </div>`;
 }
 
-function plotSensor(sensor) {
-	return `<tr data-sensor-id="${sensor.sensorId}">
-	<td><span class="datatable-string ${sensors[i].applicationId}">${sensor.applicationId}</span></td>
-	<td><span class="datatable-string sensorId">${sensor.sensorId}</span></td>
-	<td><span class="datatable-string coordinates">${sensor.latitude}, ${sensor.longitude}</span></td>
-	<td><span class="datatable-string metric">${sensor.metric}</span></td>
-	<td><span class="datatable-string metricUnits">${sensor.metricUnits}</span></td>
-	<td><span class="datatable-string timestamp">${timeConverter(sensor.timestamp)}</span></td>
+function plotMetric(metric) {
+	return `<tr data-sensor-id="${metric.sensorId}">
+	<td><span class="datatable-string ${sensors[i].applicationId}">${metric.applicationId}</span></td>
+	<td><span class="datatable-string sensorId">${metric.sensorId}</span></td>
+	<td><span class="datatable-string coordinates">${metric.latitude}, ${metric.longitude}</span></td>
+	<td><span class="datatable-string metric">${metric.metric}</span></td>
+	<td><span class="datatable-string metricUnits">${metric.metricUnits}</span></td>
+	<td><span class="datatable-string timestamp">${timeConverter(metric.timestamp)}</span></td>
 </tr>`;
 }
 
-function plotSensors(sensors) {
+function plotMetrics(metrics) {
 	var html = '';
 
 	metricsContent.classList.remove('map');
 
-	if (sensors.length > 0) {
+	if (metrics.length > 0) {
 		html += `<div class="datatable">
 	<span class="datatable-array-object">
 		<table class="table table-bordered table-condensed table-hover">
@@ -147,17 +147,17 @@ function plotSensors(sensors) {
 			<tbody>`;
 	}
 
-	for(var i = 0; i < sensors.length; i++) {
-		html += plotSensor(sensors[i]);
+	for(var i = 0; i < metrics.length; i++) {
+		html += plotMetric(metrics[i]);
 	}
 
-	if (sensors.length > 0) {
+	if (metrics.length > 0) {
 		html += `</tbody>
 			</table>
 		</span>
 	</div>`;
 
-		html += getFooter(sensors);
+		html += getFooter(metrics);
 	}
 
 	toggleIcons('gridIcon', 'mapIcon');
@@ -176,7 +176,7 @@ function search() {
 
 	var sensorId = document.getElementById('txtSearch').value;
 
-	getSensors(icon, sensorId);
+	getMetrics(icon, sensorId);
 }
 
 function timeConverter(timestamp){
