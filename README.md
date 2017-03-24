@@ -226,10 +226,11 @@ JSON.
 
 #### Obtención de todas las métricas almacenadas para un sensor en concreto
 
-Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId](http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId), la aplicación
-representando el API responderá a la petición con el resultado de consultar al almacenamiento persistente
-filtrando por la columna `sensorId`, de modo que devolverá todas las métricas almacenadas para el
-sensor especificado como parámetro. La respuesta de la petición estará en formato JSON.
+Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId](http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId), donde `:sensorId`
+representa el identificador de sensor de interés, la aplicación del API responderá a la petición con
+el resultado de consultar al almacenamiento persistente filtrando por la columna `sensorId`, de modo
+que devolverá todas las métricas almacenadas para el sensor especificado como parámetro. La respuesta
+de la petición estará en formato JSON.
 
 ![Resultados al filtrar por un sensor](static/screenshot_api_results.png)
 
