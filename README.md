@@ -125,7 +125,7 @@ identificador de la aplicación que lo envía, y la fecha de obtención del dato
 enviados a la plataforma IoT por dispositivo, y almacenados en ella con cada envío.
 
 El sensor enviará las coordenadas de su ubicación puesto que al estar instalado en un dispositivo móvil
-como es un terminal Android, éste podrá moverse y cambar su ubicación.
+como es un terminal Android, éste podrá moverse y cambiar su ubicación.
 
 ## Microservicios de la plataforma en el PaaS WeDeploy
 
