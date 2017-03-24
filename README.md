@@ -121,7 +121,7 @@ del sensor de alguna manera, por ejemplo en base al hardware del sensor.
 
 El dispositivo emitirá señales indicando su posición actual, expresada en coordenadas latitud y longitud,
 el valor de su métrica, el identificador de la métrica, las unidades en que se expresa la métrica, el
-identificador de la aplicación que lo envía, y la fecha de recepción del dato, de modo que éstos serán
+identificador de la aplicación que lo envía, y la fecha de obtención del dato, de modo que éstos serán
 enviados a la plataforma IoT por dispositivo, y almacenados en ella con cada envío.
 
 El sensor enviará las coordenadas de su ubicación puesto que al estar instalado en un dispositivo móvil
