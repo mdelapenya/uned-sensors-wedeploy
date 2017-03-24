@@ -234,9 +234,8 @@ de la petición estará en formato JSON.
 
 ![Resultados al filtrar por un sensor](static/screenshot_api_results.png)
 
-Si no hubiese ninguna métrica almacenada para dicho identificador,
-lo que indica que el sensor no existe en la plataforma, un mensaje de error 404 de HTTP será retornado
-en la respuesta.
+Si no hubiese ninguna métrica almacenada para dicho identificador, lo que indica que el sensor no
+existe en la plataforma, un mensaje de error 404 de HTTP será retornado en la respuesta.
 
 ![Resultados al filtrar por un sensor](static/screenshot_api_404.png)
 
