@@ -94,6 +94,26 @@ métrica.
 Únicamente recogeremos el identificador del sensor, por tanto la entidad sólo tendrá un campo de tipo
 `String` almacenando dicho ID único.
 
+Para el sensor representado por la aplicación Android, el identificador se obtiene de la siguiente
+manera:
+
+```java
+private String getUniqueDeviceId() {
+    TelephonyManager telephonyManager =
+        (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+
+    final String deviceId = telephonyManager.getDeviceId(); // identificador del dispositivo
+    final String simSerialNumber = telephonyManager.getSimSerialNumber(); // número de serie de la SIM
+    final String androidId = android.provider.Settings.Secure.getString(
+        getContentResolver(), android.provider.Settings.Secure.ANDROID_ID); // identificador de Android
+
+    UUID deviceUuid = new UUID(
+        androidId.hashCode(), ((long)deviceId.hashCode() << 32) | simSerialNumber.hashCode());
+
+    return deviceUuid.toString();
+}
+```
+
 ### Métricas
 
 El dispositivo emitirá señales indicando su posición actual, expresada en coordenadas latitud y longitud,
