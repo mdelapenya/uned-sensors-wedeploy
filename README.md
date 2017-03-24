@@ -130,7 +130,7 @@ como es un terminal Android, éste podrá moverse y cambiar su ubicación.
 ## Microservicios de la plataforma en el PaaS WeDeploy
 
 Para obtener más información sobre los microservicios desarrollados, por favor consultar los siguientes
-enlaces:
+enlaces, relativos a cada una de los elementos software del proyecto:
 
 * [API REST](./sensors-api/README.md)
 * [Almacenamiento persistente de métricas](./sensors-data/README.md).
