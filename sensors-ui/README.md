@@ -165,4 +165,7 @@ En la siguiente imagen aparecen los elementos antes mencionados:
 
 ![Estructura del servicio de datos](../static/ui_project_layout.png)
 
-
+Únicamente existe un fichero HTML de interés, `index.html` que define la estructura de la página y
+los bloques de elementos para representar una caja de búsqueda, los iconos de modo de visualización,
+y el contenedor cuyo contenido se actualizará con los datos retornados por la petición al API de la
+plataforma.
