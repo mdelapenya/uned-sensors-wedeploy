@@ -275,10 +275,13 @@ Para instalar la aplicación Android, será necesario seguir el siguiente tutori
 
 ### Plataforma IoT
 
+La plataforma se encuentra desplegada actualmente en **WeDeploy**, por tanto no es necesario instalarla
+de manera local.
+
 ## Integración con otros sistemas
 
-Cualquier dispositivo que quiera almacenar sus métricas en la plataforma. Únicamente tendrá que enviar
-peticiones `HTTP POST` a la plataforma, siguiendo la especificación definida por el API REST.
+Cualquier dispositivo que quiera almacenar sus métricas en la plataforma, únicamente tendrá que enviar
+peticiones `HTTP POST` a la misma, siguiendo la especificación definida por el API REST.
 
 Por ejemplo, una simple petición `curl` sería suficiente para enviar una métrica, siempre y cuando se
 envíen los datos adecuados en formato JSON:
