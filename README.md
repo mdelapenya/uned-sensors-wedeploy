@@ -63,12 +63,93 @@ lectura de métricas desde los sensores, sin tener que aprender a utilizar, conf
 sistema de terceros por completo. Por ello, se ha elegido utilizar un PaaS como es [WeDeploy](http://www.wedeploy.com),
 que permite desplegar servicios en su plataforma, gestionando dichos servicios como repositorios Git.
 
-En concreto, permite construir fácilmente APIs que ayuden a la creación de aplicaciones modernas,
-proporcionando un conjunto de servicios listos para ser utilizados, permitiendo almacenar datos en el
-cloud, buscar y enviar contenido en tiempo real, autenticar usuarios, enviar emails, entre otros
-servicios cloud.
+### Motivación sobre la elección de WeDeploy
 
-<!-- TODO más sobre WeDeploy -->
+La motivación más importante es la que se refiere a la infraestructura. Mientras que con otras
+plataformas como `Kaa` o `Macchina.io` es necesaria la instalación y configuración de la máquina base
+que dará soporte a la plataforma, con **WeDeploy** nos olvidamos completamente de la infraestructura,
+ayudando al desarrollador de aplicaciones, en este caso de IoY, a dedicar el tiempo a lo que realmente
+importa: construir y escalar aplicaciones.  
+
+#### ¿Qué es WeDeploy?
+
+WeDeploy proporciona un acceso a APIs muy intuitivas que ayudan a la creación de aplicaciones modernas,
+de una manera más rápida. Desde aplicaciones sencillas a una completa arquitectura orientada a
+microservicios, **WeDeploy** permite elegir entre una docena de lenguajes, frameworks, o stacks
+completos de aplicaciones, así como lanzar entornos preparados para producción en cuestión de minutos. 
+
+Con **WeDeploy** es posible responder a las necesidades de los usuarios de una manera más rápida y
+eficiente:
+
+* Despliegue de aplicaciones más rápido.
+* Distribución automática del tráfico entrante entre múltiples instancias.
+* Autenticación de usuarios con unas pocas líneas de código.
+* Almacenamiento seguro y consumo de información en tiempo real.
+* Lanzamiento de aplicaciones sin tiempos de caída.
+* Construcción y despliegue de microservicios.
+
+#### ¿Por qué WeDeploy?
+
+A la hora de construir aplicaciones altamente escalables, es necesario considerar muchos elementos,
+como por ejemplo, cuellos de botella en el rendimiento, resiliencia y escalabilidad de la base de
+datos, autenticación, autorización, alojamiento estático, por citar unos cuantos. **WeDeploy** permite
+enfrentarse a todos los retos de un backend en un único lugar.
+
+#### ¿Cómo ayuda WeDeploy al despliegue de aplicaciones?
+
+Independientemente de tener una aplicación sencilla, o un conjunto complejo de microservicios, la
+infraestructura cloud gestionada que supone **WeDeploy** propociona las herramientas para manejar la
+visibilidad, el escalado y la resolución de nombres (DNS) de las aplicaciones.
+
+#### ¿Qué funcionalidades ofrece WeDeploy?
+
+##### Actualizaciones sin tiempos de caída
+
+**WeDeploy** proporciona automatización para la actualización de servicios y sistemas sin tiempo de
+caída ni interrupciones al usuario. Los despliegues de los servicios pueden ser realizados utilizando
+distintos algoritmos: `rolling-update`, `blue-green` o `canary`. Si la actualización falla, es posible
+volver atrás de una manera muy sencilla (un click). 
+
+##### Descubrimiento de servicios y balanceo de carga
+
+Los servicios distribuidos crean problemas distribuidos. Por ello **WeDeploy** incluye la generación
+automática de endpoints DNS, un API para el descubrimiento de servicios, una capa de transporte (L4)
+de proxy de IPs virtuales para soportar la comunicación interna de alta velocidad, y una capa de
+aplicación (L7) de balanceo de carga para los servicios expuestos hacia el exterior.
+
+##### Servicios de visibilidad
+
+Con **WeDeploy** es posible marcar los servicios como públicos o privados en cuanto al acceso externo.
+
+##### Alta disponibilidad
+
+**WeDeploy** está configurado en alta disponibilidad y facilita del mismo modo que los servicios estén
+disponibles en alta disponibilidad del mismo modo.
+
+Los servicios críticos requieren de monitorización, auto-curado, y tolerancia a fallos, tanto para
+ellos mismos como para la plataforma e infraestructura sobre la que corren. **WeDeploy** ofrece múltiples
+capas de protección. Para consehuir el auto-curado, por ejemplo, los servicios son monitorizados y
+relanzados si fallan. Incluso servicios de código legado que no soportan distribución o replicación
+pueden ser automáticamente relanzados para maximizar el tiempo de uso, así como disminuir el número
+de interrupciones del servicio.
+
+##### Escalabilidad elástica
+
+**WeDeploy** permite escalar de manera fácil los servicios. El escalado horizontal es trivial con
+Docker Swarm, siempre y cuando los servicios lo soporten. Es posible además cambiar el número de
+instancias en cualquier momento, incluso basándose en el número de sesiones concurrentes, mediante el
+uso del servicio de Balanceo de Carga.
+
+##### Interfaces de usuario
+
+**WeDeploy** ofrece dos interfaces para facilitar la monitorización y la gestión de los proyectos y
+servicios. Por un lado, el `Dashboard`, o cuadro de mandos, que permite monitorizar el dimensionamiento
+de los recursos, y la salud de los servicios en ejecución, entre otros, mediante el uso de un navegador
+web, gráficos en tiempo real, y herramientas interactivas de depuración.
+
+Además, **WeDeploy** proporciona un CLI (`Command-line Interface`) para gestionar lose proyectos y
+servicios desde la comodidad de un terminal. Este CLI es potente, a la vez que scriptable, con varios
+plug-ins para interactuar con los proyectos.
 
 ## Modelo de Datos
 
