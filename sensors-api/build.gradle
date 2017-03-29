@@ -12,6 +12,7 @@ buildscript {
   }
 }
 
+apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -44,6 +45,8 @@ dependencies {
 
   testCompile("org.springframework.boot:spring-boot-starter-test")
   testCompile("junit:junit")
+  testCompile("org.codehaus.groovy:groovy-all:2.4.4")
+  testCompile("org.spockframework:spock-core:1.0-groovy-2.4")
 }
 
 sourceCompatibility = 1.8
