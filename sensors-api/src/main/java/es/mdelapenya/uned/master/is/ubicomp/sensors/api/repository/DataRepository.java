@@ -36,6 +36,16 @@ public class DataRepository {
 		return instance;
 	}
 
+	public Collection<SensorRow> delete(String sensorId) {
+		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
+
+		weDeploy.header("Content-Type", "application/json; charset=UTF-8")
+			.filter("sensorId", sensorId)
+			.delete();
+
+		return Collections.EMPTY_LIST;
+	}
+
 	public Collection<SensorRow> wipeOut() {
 		WeDeploy weDeploy = new WeDeploy(BASE_SENSORS_DATA_PATH);
 

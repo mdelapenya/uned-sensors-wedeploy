@@ -46,6 +46,11 @@ public class SensorsRestController {
 		return dataRepository.wipeOut();
 	}
 
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{sensorId}")
+	public Collection<SensorRow> delete(String sensorId) {
+		return dataRepository.delete(sensorId);
+	}
+
 	@CrossOrigin(origins = "*")
 	@RequestMapping(method = RequestMethod.GET, value = "/{sensorId}")
 	public Collection<SensorRow> getSensor(@PathVariable String sensorId) {
