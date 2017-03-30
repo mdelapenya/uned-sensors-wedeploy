@@ -116,7 +116,7 @@ function noResults() {
 
 function plotMetric(metric) {
 	return `<tr data-sensor-id="${metric.sensorId}">
-	<td><span class="datatable-string ${sensors[i].applicationId}">${metric.applicationId}</span></td>
+	<td><span class="datatable-string ${metric.applicationId}">${metric.applicationId}</span></td>
 	<td><span class="datatable-string sensorId">${metric.sensorId}</span></td>
 	<td><span class="datatable-string coordinates">${metric.latitude}, ${metric.longitude}</span></td>
 	<td><span class="datatable-string metric">${metric.metric}</span></td>
