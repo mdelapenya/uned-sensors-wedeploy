@@ -276,7 +276,7 @@ y especificación para aplicaciones Java y Groovy, inspirado en JUnit, jMock, RS
 Vulcans, entre otros.
 
 Estos tests de integración, que prueban las llamadas HTTP al API, se encuentran en [este directorio](./sensors-api/src/test),
-encontrándose la documentación asociada a dichos tests igualmente en [el siguiente enlace](./sensors-api/README.md#Tests).
+encontrándose la documentación asociada a dichos tests igualmente en [el siguiente enlace](./sensors-api/README.md#tests).
 
 ### Exploratory Testing
 
