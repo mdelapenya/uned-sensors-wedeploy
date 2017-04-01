@@ -112,7 +112,7 @@ Dentro de `src` se sigue una estructura igual a la definida por `Maven`:
 * `src/main/resources` para los ficheros de configuración de Spring, así como los recursos estáticos
 de la aplicación: páginas HTML de error y CSS, por ejemplo.
 * `src/test` para los tests unitarios.
-* `src/testIntegration` para los tests de integración.
+* `src/test/groovy` para los tests de integración.
 
 En la siguiente imagen aparecen los elementos antes mencionados:
 
@@ -273,3 +273,153 @@ HTTP POST que recibe la aplicación, la anotación `@RequestBody` indica que la 
 un objeto en formato JSON que pueda ser parseado al objeto `Metric`, de modo que los campos del objeto
 JSON se correspondan con los atributos de la clase `Metric`. Este parseo lo realizan las clases de la
 librería de serialización y parseo JSON `Jackson`, incluída por defecto en `Spring Boot`.
+
+### Tests
+
+En el directorio `./src/test/groovy`, en el mismo paquete raíz que el controlador que representa los
+endpoints REST, se encuentra el fichero `Groovy` representando los tests que prueba las llamadas HTTP
+al API, llamado `SensorsRestControllerSpec.groovy`.
+
+Esta clase `.groovy`, que extiende la clase `Specification` de `Spock`, utiliza el ciclo de vida habitual
+de los tests, disponiendo de un método de inicialización de cada test, nombrado `setupSpec` y que se
+ejecuta antes de cada método de test, y un método de liberación de recursos de cada test, nombrado
+`cleanupSpec` y que se ejecuta tras cada método de test.
+
+#### Inicialización de los tests
+
+Antes de cada método de tests se inicializa el cliente HTTP, definido en la variable con ámbito global
+al test `restClient`, definiendo las cabeceras HTTP a utilizar en las llamadas, así como la gestión
+de errores. Esta gestión es necesaria puesto que el API no falla ante errores, sino que devuelve los
+códigos de estado adecuados, y el cliente HTTP tiene que conocer este comportamiento, de lo contrario
+tratará un código de retorno distinto al 200 como un error no controlado en la ejecución.
+
+Además, se lleva una cuenta del número de métricas que existen en el momento de la petición, de modo
+que en cada inserción se pueda verificar que al invocar una petición `POST` para escribir una métrica,
+se pueda realizar otra peticion `GET` de lectura y verificar que se ha incrementado el valor del total
+de métricas en la plataforma.
+
+```groovy
+class SensorsRestControllerSpec extends Specification {
+
+	@Shared
+	def SENSOR_ID = "sensorId"
+
+	@Shared
+	RESTClient restClient
+
+	@Shared
+	def initialCount
+
+	def setupSpec() {
+		restClient = new RESTClient("http://api.mdelapenya-sensors.wedeploy.io")
+
+		restClient.headers.Accept = 'application/json'
+		restClient.handler.failure  = restClient.handler.success
+
+		def listResponse = restClient.get(path : "/sensors")
+		initialCount = listResponse.data.size()
+	}
+
+	... 
+}
+```
+
+#### Liberación de recursos en los tests
+
+Tras la ejecución de cada método de tests se invoca el cliente HTTP para que realice una petición
+`DELETE` sobre el recurso `/sensors/:sensorId`, donde `:sensorId` representa el identificador del
+sensor a eliminar. Se ha definido una constante con ámbito global a los tests que asigna siempre el
+mismo valor al parámetro, de modo que se borren los datos creados en los tests. 
+
+```groovy
+
+	...
+
+	@Shared
+		def SENSOR_ID = "sensorId"
+
+	...
+
+	def cleanupSpec() {
+		restClient.delete(
+			path : "/sensors/" + SENSOR_ID,
+			contentType:'application/json'
+		)
+	}
+
+	...
+
+```
+
+#### Tests que comprueban los códigos de respuesta de los diferentes endpoints GET del API
+
+Se ha escrito un único test para verificar el código de respuesta, `def 'Check endpoints'() {...}`, y
+aprovechando la potencia del framework `Spock`, se ha definido una tabla de valores por las cuales
+el test itera y ejecuta un test por cada fila en una tabla de datos representando los diferentes valores
+de entrada al test, así como sus respectivos valores de salida esperados.
+
+Además, se definen con claridad los bloques `WHEN` y `THEN` habituales en los tests orientados al
+comportamiento, o *BDD (Behaviour Driven Development)*, representando respectivamente los diferentes
+pasos de un test:
+
+* Dado un cliente HTTP (referido a la inicialización de los tests)
+* Cuando se ejecuta una petición `GET` al recurso X (bloque WHEN)
+* Entonces el estado HTTP de la respuesta es Y (bloque THEN)
+* Con los valores definidos en la tabla en la que la primera columna representa el path del recurso, y
+la segunda columna representa el código de respuesta esperado. (bloque WHERE)
+
+```groovy
+@Unroll("Check that #expectedHttpStatus is the HTTP status for #path endpoint")
+def 'Check endpoints'() {
+    when: "when requesting a resource"
+    def response = restClient.get( path: path)
+
+    then: "HTTP status is #expectedHttpStatus"
+    assert response.status == expectedHttpStatus
+
+    where:
+    path            | expectedHttpStatus
+    "/"             | 404
+    "/sensors"      | 200
+    "/sensors/foo"  | 404
+}
+```
+
+#### Tests que comprueban el código de respuesta de la creación de métricas
+
+Se ha escrito un único test para verificar que al insertar una métrica y recuperar todas las métricas
+de la plataforma, la nueva métrica incrementa la cantidad de métricas en la plataforma,
+`def 'Creating a metric'() {...}`.
+
+Además, se definen con claridad los bloques `WHEN` y `THEN` habituales en los tests orientados al
+comportamiento, o *BDD (Behaviour Driven Development)*, representando respectivamente los diferentes
+pasos de un test:
+
+* Dado un cliente HTTP (referido a la inicialización de los tests)
+* Cuando se ejecuta una petición `POST` al recurso `/sensors` con una métrica creada a tal efecto,
+con valores por defecto (bloque WHEN)
+* Y además cuando se hace una petición `GET` para obtener la lista de métricas en la plataforma
+(bloque AND)
+* Entonces la lista contiene un elemento más que en la fase de inicialización del test (bloque THEN)
+
+```groovy
+def "Creating a metric"() {
+    when: "a new metric is created"
+    def metric = new SensorMetric(
+        SENSOR_ID, "spock-test", 39.862846,
+        -4.024904, 21, "temperature", "Celsius",
+        new Date().getTime())
+
+    restClient.post(
+        path : "/sensors",
+        body: metric.toString(),
+        contentType:'application/json'
+    )
+
+    and: "metrics list is requested"
+    def listResponse = restClient.get(path : "/sensors")
+
+    then: "metrics list should contain one more element"
+    assert initialCount +1 == listResponse.data.size()
+}
+```

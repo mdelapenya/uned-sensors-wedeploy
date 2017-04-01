@@ -268,7 +268,15 @@ Debido a la simplicidad del proyecto, no se han escrito tests unitarios para los
 
 ### Tests de integración
 
-<!-- TODO -->
+Respecto a las pruebas de integración, se han escrito tests que prueban las llamadas HTTP al microservicio
+del API Java, verificando que los código de respuesta HTTP son los adecuados para cada prueba.
+
+Para el lenguaje de programación de estos tests se ha elegido [`Spock`](http://spockframework.org), que es un framework de testing
+y especificación para aplicaciones Java y Groovy, inspirado en JUnit, jMock, RSpec, Groovy, Scala,
+Vulcans, entre otros.
+
+Estos tests de integración, que prueban las llamadas HTTP al API, se encuentran en [este directorio](./sensors-api/src/test),
+encontrándose la documentación asociada a dichos tests igualmente en [el siguiente enlace](./sensors-api/README.md#Tests).
 
 ### Exploratory Testing
 
