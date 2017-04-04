@@ -29,17 +29,8 @@ task run(dependsOn: ':bootRun') << {
 repositories {
   mavenLocal()
   mavenCentral()
+  maven { url "https://jitpack.io" }
   maven { url "http://repo.spring.io/release" }
-  maven {
-    url wedeployRepo
-    credentials {
-      username wedeployRepoUsername
-      password wedeployRepoPassword
-    }
-  }
-  maven {
-    url "https://jitpack.io"
-  }
 }
 
 dependencies {
