@@ -28,9 +28,15 @@ task run(dependsOn: ':bootRun') << {
 
 repositories {
   mavenLocal()
-  jcenter()
   mavenCentral()
   maven { url "http://repo.spring.io/release" }
+  maven {
+    url wedeployRepo
+    credentials {
+      username wedeployRepoUsername
+      password wedeployRepoPassword
+    }
+  }
   maven {
     url "https://jitpack.io"
   }
@@ -38,8 +44,8 @@ repositories {
 
 dependencies {
   compile 'com.github.mdelapenya:uned-sensors-pojos-api:master-SNAPSHOT'
-  compile("com.github.wedeploy.api-java:api:beta")
-  compile("com.github.wedeploy.api-java:api-client:beta")
+  compile 'com.wedeploy:com.wedeploy.api-java.api:beta-20170331'
+  compile 'com.wedeploy:com.wedeploy.api-java.api-client:beta-20170331'
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.springframework.boot:spring-boot-starter-actuator")
 
