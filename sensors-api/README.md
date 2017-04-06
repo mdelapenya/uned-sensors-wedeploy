@@ -30,7 +30,73 @@ identificador de la plataforma en la que está instalada, por ejemplo `sensors-a
 Para la construcción del microservicio que representa el API, tal y como es habitual en los proyectos
 *Java*, se ha utilizado **Gradle**, en su versión 3.3.
 
-Gradle es un sistema de construcción especializado para el mundo de la máquina virtual Java (JVM).
+### Alternativas en el sistema de build para aplicaciones de la JVM
+
+El ecosistema JVM se encuentra dominado por tres herramientas de build:
+
+* Apache Ant con Ivy como gestor de dependencias
+* Maven
+* Gradle
+
+#### Apache Ant + Ivy
+
+`Ant` fue la primera herramienta moderna de build. En muchos aspectos es similar a `Make`. Fue lanzada
+en el año 2000, y en un periodo corto de tiempo consiguió ser la herramienta de build más popular para
+proyectos Java. Tiene una curva de aprendizaje pequeña, lo que permite a cualquiera comenzar a utilizarla
+sin ninguna preparación especial, Está basado en la idea de la programación procedural.
+
+Tras su lanzamiento inicial, fue mejorada con el soporte para añadir plugins.
+
+Por otro lado, su mayor incoveniente siempre ha sido el uso de XML como formato para la escritura de
+los scripts de construcción. XML, debido a su naturaleza jerárquica, no es un buen candidato para el
+enfoque procedural de programación que `Ant` utiliza. Otro problema importante con `Ant` es que el
+XML que utiliza tiende a convertirse en inmanejablemente grande, tanto en proyectos grandes como
+pequeños.
+
+#### Maven
+
+`Maven` fue lanzado en 2004. Su objetivo era el mejorar los problemas que los desarrolladores tenían
+al usar `Ant`. Continúa utilizando XML como el formato de escritura de los scripts de construcción,
+sin embargo es diametralmente diferente a `Ant` en su estructura: mientras `Ant` obliga a los
+desarrolladores a escribir todos los comandos que llevan a la ejecución satisfactoria de algunas tareas,
+`Maven` se apoya en convenciones y proporciona unos `target` (goals, u objetivos) que pueden ser
+invocados. Otras mejoras, y problamente las más importantes, son que `Maven` introdujo la habilidad
+de descargar dependencias de la red, que luego `Ant` adoptó mediante el proyecto `Apache Ivy`. Este
+nuevo enfoque de gestión de dependencias revolucionó la manera de entregar software.
+
+Sin embargo, `Maven` tiene sus propios problemas. La gestión de dependencias que hace no maneja de
+manera correcta los conflictos entre diferentes versiones de la misma librería, algo en lo que `Ivy`
+es mucho mejor. Además, XML como formato de configuración es muy estricto en su estructura, así como
+muy estandarizado. La personalización de los `targets` es compleja, por ello, al estar `Maven` más
+enfocado en la gestión de las dependencias, es más dificil escribir complejos scripts de construcción
+personalizados en `Maven` que en `Ant`.
+
+El principal beneficio de utilizar `Maven` es su ciclo de vida. Mientras un proyecto se adhiera a unos
+estándares, con `Maven` se puede adaptar el ciclo de vida con cierta facilidad. Como contrapartida,
+esta adaptación disminuye la flexibilidad.
+
+#### Gradle
+
+Hoy día existe cierto interés creciente en los DSLs (Domain Specific Languages), en los que la idea
+es disponer de lenguajes diseñados específicamente para solucionar problemas de cierto dominio. Aplicado
+al mundo de los sistema de build, uno de los resultados de aplicar DSL es `Gradle`.
+
+`Gradle` combina las buenas partes de las dos herramientas anteriores y construye sobre ellas utilizando
+un DSL, entre otras mejoras. Dispone de la potencia y la flexibilidad de `Ant`, así como la facilidad
+a la hora de definir un ciclo de vida de `Maven`. El resultado final es una herramienta que fue
+lanzada en 2012, y obtuve mucha atención en muy poco tiempo. Por ejemplo, Google adoptó `Gradle` como
+herramienta de build por defecto para el sistema operativo Android.
+
+`Gradle` no utiliza XML. En su lugar, tiene su propio DSL basado en `Groovy`, un lenguaje de la JVM.
+Como resultado, los scripts de construcción de `Gradle` tienden a ser mucho más pequeños y limpios
+que aquéllos escritos con `Ant` o `Maven`. La cantidad de código repetitivo es mucho menor, puesto
+que su DSL está diseñado para resolver un problema en concreto: mover el software a través de su ciclo
+de vida, desde la compilación, pasando por el análisis estático de código y el testing, hasta el
+empaquetado y el despliegue. En sus inicios, `Gradle` utilizaba `Apache Ivy` para la gestión de
+dependencias, pero más adelante pasó a utilizar un motor de resolución propio.
+
+Los esfuerzos de `Gradle` se podrían resumir en la frase “la convención es buena, así como la flexibilidad”.
+
 Gradle proporciona:
 
 * una herramienta de construcción de propóstio general y muy flexible, parecido a Apache Ant.
