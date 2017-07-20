@@ -1,4 +1,4 @@
 {
 	"id": "ui",
-	"type": "wedeploy/hosting"
+	"image": "wedeploy/hosting"
 }

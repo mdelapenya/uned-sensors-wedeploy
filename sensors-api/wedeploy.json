@@ -1,6 +1,6 @@
 {
     "id": "api",
-    "type": "wedeploy/java:latest",
+    "image": "wedeploy/java:latest",
     "hooks": {
         "before_build": "",
         "build": "gradle -Dorg.gradle.native=false clean build -x test",
