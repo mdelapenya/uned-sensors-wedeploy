@@ -27,6 +27,8 @@ import es.mdelapenya.uned.master.is.ubicomp.sensors.pojo.SensorRow;
 import java.util.Collection;
 import java.util.Collections;
 
+import jodd.util.StringUtil;
+
 /**
  * @author Manuel de la Peña
  */
@@ -60,6 +62,12 @@ public class DataRepository {
 
 		Response response = weDeploy.filter("sensorId", sensorId).get();
 
+		String body = response.body();
+
+		if (StringUtil.isBlank(body)) {
+			return Collections.EMPTY_LIST;
+		}
+
 		JoddJsonParser parser = new JoddJsonParser();
 
 		return parser.parseAsList(response.body(), SensorRow.class);
@@ -70,9 +78,15 @@ public class DataRepository {
 
 		Response response = weDeploy.get();
 
+		String body = response.body();
+
+		if (StringUtil.isBlank(body)) {
+			return Collections.EMPTY_LIST;
+		}
+
 		JoddJsonParser parser = new JoddJsonParser();
 
-		return parser.parseAsList(response.body(), SensorRow.class);
+		return parser.parseAsList(body, SensorRow.class);
 	}
 
 	public Response save(Metric sensorMetric) {
