@@ -35,8 +35,8 @@ repositories {
 
 dependencies {
   compile 'com.github.mdelapenya:uned-sensors-pojos-api:master-SNAPSHOT'
-  compile 'com.wedeploy:com.wedeploy.api-java.api:beta-20170331'
-  compile 'com.wedeploy:com.wedeploy.api-java.api-client:beta-20170331'
+  compile 'com.wedeploy:com.wedeploy.api-java.api:0.0.1'
+  compile 'com.wedeploy:com.wedeploy.api-java.api-client:0.0.1'
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.springframework.boot:spring-boot-starter-actuator")
 
