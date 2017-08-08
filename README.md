@@ -300,13 +300,13 @@ abierta y en primer plano, se enviará una métrica a la plataforma IoT.
 
 A continuación se presentan las URLs de los diferentes elementos que componen la plataforma:
 
-* API (todas las métricas): [http://api.mdelapenya-sensors.wedeploy.io/sensors](http://api.mdelapenya-sensors.wedeploy.io/sensors)
-* API (métricas de un sensor): [http://api.mdelapenya-sensors.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f](http://api.mdelapenya-sensors.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f)
-* Interfaz de Usuario: [http://ui.mdelapenya-sensors.wedeploy.io](http://ui.mdelapenya-sensors.wedeploy.io)
+* API (todas las métricas): [https://sensorsapi-mdelapenya.wedeploy.io/sensors](https://sensorsapi-mdelapenya.wedeploy.io/sensors)
+* API (métricas de un sensor): [https://sensorsapi-mdelapenya.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f](https://sensorsapi-mdelapenya.wedeploy.io/sensors/ffffffff-e137-0800-d291-847505cc2b1f)
+* Interfaz de Usuario: [https://sensorsui-mdelapenya.wedeploy.io](https://sensorsui-mdelapenya.wedeploy.io)
 
 #### Obtención de todas las métricas almacenadas
 
-Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors](http://api.mdelapenya-sensors.wedeploy.io/sensors), la aplicación representando el
+Accediendo a la URL [https://sensorsapi-mdelapenya.wedeploy.io/sensors](https://sensorsapi-mdelapenya.wedeploy.io/sensors), la aplicación representando el
 API responderá a la petición con el resultado de consultar al almacenamiento persistente sin filtros,
 de modo que devolverá todas las métricas almacenadas. La respuesta de la petición estará en formato
 JSON.
@@ -315,7 +315,7 @@ JSON.
 
 #### Obtención de todas las métricas almacenadas para un sensor en concreto
 
-Accediendo a la URL [http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId](http://api.mdelapenya-sensors.wedeploy.io/sensors/:sensorId), donde `:sensorId`
+Accediendo a la URL [https://sensorsapi-mdelapenya.wedeploy.io/sensors/:sensorId](https://sensorsapi-mdelapenya.wedeploy.io/sensors/:sensorId), donde `:sensorId`
 representa el identificador de sensor de interés, la aplicación del API responderá a la petición con
 el resultado de consultar al almacenamiento persistente filtrando por la columna `sensorId`, de modo
 que devolverá todas las métricas almacenadas para el sensor especificado como parámetro. La respuesta
@@ -330,7 +330,7 @@ existe en la plataforma, un mensaje de error 404 de HTTP será retornado en la r
 
 #### Interfaz de Usuario
 
-Accediendo a la URL http://ui.mdelapenya-sensors.wedeploy.io se mostrará el interfaz de usuario que
+Accediendo a la URL https://sensorsui-mdelapenya.wedeploy.io se mostrará el interfaz de usuario que
 mostrará las métricas almacenadas en la plataforma. Nada más acceder a la aplicación, se cargarán
 todas las métricas disponibles, en un formato tabular.
 
@@ -376,13 +376,13 @@ Por ejemplo, una simple petición `curl` sería suficiente para enviar una métr
 envíen los datos adecuados en formato JSON:
 
 ```shell
-curl -v -H "Content-Type: application/json" -X POST -d '{"sensorId":"abcdefghijk","applicationId":"sensors-curl","latitude":"40.98765","longitude":"-1.12345","metric":"24", "metricUnits":"Celsius","metricName":"temperature","timestamp":"1489055420416"}' http://api.mdelapenya-sensors.wedeploy.io/sensors
+curl -v -H "Content-Type: application/json" -X POST -d '{"sensorId":"abcdefghijk","applicationId":"sensors-curl","latitude":"40.98765","longitude":"-1.12345","metric":"24", "metricUnits":"Celsius","metricName":"temperature","timestamp":"1489055420416"}' https://sensorsapi-mdelapenya.wedeploy.io/sensors
 ```
 
 Por tanto, para enviar una métrica será necesario por tanto enviar una cabecera indicando que el
 `Content-type` a utilizar durante el intercambio de datos será *JSON*, el verbo HTTP a utilizar será
 *POST*, y la URL que recibirá la petición será la definida por el recurso `/sensors` en la plataforma
-`http://api.mdelapenya-sensors.wedeploy.io`. En lo que a los datos se refiere, es necesario enviar:
+`https://sensorsapi-mdelapenya.wedeploy.io`. En lo que a los datos se refiere, es necesario enviar:
 
 * el identificador del sensor
 * el identificador de la aplicación

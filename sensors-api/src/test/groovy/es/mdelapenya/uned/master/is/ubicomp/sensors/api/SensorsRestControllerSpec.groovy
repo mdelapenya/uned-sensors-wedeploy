@@ -43,7 +43,7 @@ class SensorsRestControllerSpec extends Specification {
 	}
 
 	def setupSpec() {
-		restClient = new RESTClient("http://api.mdelapenya-sensors.wedeploy.io")
+		restClient = new RESTClient("https://sensorsapi-mdelapenya.wedeploy.io")
 
 		restClient.headers.Accept = 'application/json'
 		restClient.handler.failure  = restClient.handler.success
