@@ -51,7 +51,7 @@ function getMetrics(mode, sensorId) {
 		path += '/' + sensorId;
 	}
 
-	var url = 'http://api.mdelapenya-sensors.wedeploy.io' + path;
+	var url = 'https://api-mdelapenya.wedeploy.io' + path;
 
 	return fetch(url)
 		.then(function(response) {
